@@ -62,19 +62,6 @@ Notes about what app should include/accomplish:
 * Back-end
   * [express](https://expressjs.com)
   * [mongoDB](https://www.mongodb.com)
-  * [express](https://expressjs.com)
   * [body-parser](https://www.npmjs.com/package/body-parser)
----
-```
-npm install react
-```
-```
-npm install bulma
-```
-```
-npm install express
-```
-```
-npm install body-parser
-```
+
 
