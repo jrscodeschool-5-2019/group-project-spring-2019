@@ -53,4 +53,16 @@ Notes about what app should include/accomplish:
    - Delete button
 
 
-// Hi it's me!
+## Tech Stack 
+
+* Front-end 
+  * [react](https://reactjs.org)
+  * [bulma.io](https://bulma.io)
+
+* Back-end
+  * [express](https://expressjs.com)
+  * [mongoDB](https://www.mongodb.com)
+  * [mongoose](https://mongoosejs.com)
+  * [body-parser](https://www.npmjs.com/package/body-parser)
+
+
