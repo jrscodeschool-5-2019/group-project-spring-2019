@@ -48,5 +48,6 @@ Notes about what app should include/accomplish:
    - LinkedIn account
    - Any other webpage accounts
    - Short bio
+   - Description of final project
    - Edit button
    - Delete button
