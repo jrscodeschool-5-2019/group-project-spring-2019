@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from './JRS_Coding_School_logo.png'
 import 'bulma/css/bulma.css'
 
 function Page() {
@@ -9,8 +10,8 @@ function Page() {
       <nav class="navbar">
         <div class="container">
           <div class="navbar-brand">
-            <a class="navbar-item" href="../">
-              <img src="" alt="Logo" />
+            <a href="../">
+              <img src={Logo} alt="Logo" width="250px" />
             </a>
             <span class="navbar-burger burger" data-target="navbarMenu">
               <span />
@@ -59,6 +60,8 @@ function Page() {
 
       {/* columns for student cards */}
       <div class="row columns">
+        <div class="column is-one-third"> cards go here </div>
+        <div class="column is-one-third"> cards go here </div>
         <div class="column is-one-third"> cards go here </div>
       </div>
     </div>
