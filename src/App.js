@@ -1,6 +1,8 @@
 import React from "react";
 import LandingPage from "./landingPage";
 import Registration from "./registration-form";
+import Login from "./login-page";
+import Page from "./student-view";
 import { Router, Link } from "@reach/router";
 
 function App() {
@@ -9,6 +11,8 @@ function App() {
       <Router>
         <LandingPage path="/" />
         <Registration path="registration" />
+        <Login path="/student-login" />
+        <Page path="/student-view" />
       </Router>
     </div>
   );

@@ -16,15 +16,19 @@ function LandingPage() {
           style={{ backgroundColor: "honeydew" }}
         >
           <div className="land-btn">
-            <button className="button is-inline-flex is-large is-rounded">
-              View JRS Alum
-            </button>
+            <Link to="/student-view">
+              <button className="button is-inline-flex is-large is-rounded">
+                View JRS Alum
+              </button>
+            </Link>
             <h1>For potential employers or future JRS students!</h1>
           </div>
           <div className="land-btn">
-            <button className="button is-inline-flex is-large is-rounded">
-              JRS Alumni Login
-            </button>
+            <Link to="/student-login">
+              <button className="button is-inline-flex is-large is-rounded">
+                JRS Alumni Login
+              </button>
+            </Link>
             <h1>Registered JRS Students login here!</h1>
           </div>
           <div className="land-btn">
