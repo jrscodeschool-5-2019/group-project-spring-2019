@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./JRS_Coding_School_logo.png";
 import { Router, Link } from "@reach/router";
 import "bulma/css/bulma.css";
+import Registration from "./registration-form";
 
 function LandingPage() {
   return (
@@ -15,11 +16,9 @@ function LandingPage() {
           style={{ backgroundColor: "honeydew" }}
         >
           <div className="land-btn">
-            <Link to="/">
-              <button className="button is-inline-flex is-large is-rounded">
-                View JRS Alum
-              </button>
-            </Link>
+            <button className="button is-inline-flex is-large is-rounded">
+              View JRS Alum
+            </button>
             <h1>For potential employers or future JRS students!</h1>
           </div>
           <div className="land-btn">
@@ -29,9 +28,11 @@ function LandingPage() {
             <h1>Registered JRS Students login here!</h1>
           </div>
           <div className="land-btn">
-            <button className="button is-inline-flex is-large is-rounded">
-              Student registration
-            </button>
+            <Link to="/registration">
+              <button className="button is-inline-flex is-large is-rounded">
+                Student registration
+              </button>
+            </Link>
             <h1>JRS Student? Not Registered? Click Here!</h1>
           </div>
         </div>
