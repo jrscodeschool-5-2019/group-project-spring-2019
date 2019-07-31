@@ -1,66 +1,61 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const StudentSchema = mongoose.Schema({
   username: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   email: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   passwordHash: {
     type: String,
-    required: true,
+    required: true
   },
   name: {
     first: {
       type: String,
-      require: true,
+      require: true
     },
     last: {
       type: String,
-      require: true,
-    },
+      require: true
+    }
   },
   img: {
-    type: String,
+    type: String
   },
   gradYear: {
-    type: String,
+    type: String
   },
   currentStudent: {
     type: Boolean,
-    default: false,
+    default: false
   },
   employmentStatus: {
-    type: String,
+    type: String
   },
   seekingEmployment: {
     type: Boolean,
-    default: false,
+    default: false
   },
   bio: {
-    type: String,
+    type: String
   },
-  contactLinks: {
-    gitHub: {
-      type: String,
-    },
-    linkedIn: {
-      type: String,
-    },
-    other: {
-      type: String,
-    },
-  },
+  contactLinks: [
+    {
+      name: String,
+      link: String
+    }
+  ],
   finalProject: {
-    type: String,
-  },
-});
+    type: String
+  }
+})
 
-const Student = mongoose.model('student', StudentSchema);
+const Student = mongoose.model('student', StudentSchema)
 
-module.exports = Student;
+module.exports = Student
