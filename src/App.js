@@ -1,12 +1,12 @@
-import React from "react";
-import LandingPage from "./landingPage";
+import React from 'react'
+import LandingPage from './landingPage'
 
 function App() {
   return (
     <div>
       <LandingPage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
