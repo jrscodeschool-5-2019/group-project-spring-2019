@@ -31,8 +31,16 @@ const StudentSchema = mongoose.Schema({
   gradYear: {
     type: String,
   },
+  currentStudent: {
+    type: Boolean,
+    default: false,
+  },
   employmentStatus: {
     type: String,
+  },
+  seekingEmployment: {
+    type: Boolean,
+    default: false,
   },
   bio: {
     type: String,

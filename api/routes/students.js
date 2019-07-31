@@ -34,7 +34,9 @@ router
       foundStudent.name.last = req.body.last_name;
       foundStudent.img = req.body.img;
       foundStudent.gradYear = req.body.gradYear;
+      foundStudent.currentStudent = req.body.currentStudent;
       foundStudent.employmentStatus = req.body.employmentStatus;
+      foundStudent.seekingEmployment = req.body.seekingEmployment;
       foundStudent.bio = req.body.bio;
       foundStudent.contactLinks.gitHub = req.body.gitHub;
       foundStudent.contactLinks.linkedIn = req.body.linkedIn;
