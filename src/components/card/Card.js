@@ -10,21 +10,22 @@ import './card-styles.css'
 const Card = ({ user }) => {
   return (
     <div className='box card'>
-      <img alt={`${user.name} img`} src={user.photo} />
-      <h1>{user.name}</h1>
-      <h3>{user.year}</h3>
-      <h3>{user.employ}</h3>
+      <img alt={`${user._id} img`} src={user.img} />
+      <h1>
+        {user.name.first} {user.name.last}
+      </h1>
+      <h3>{user.gradYear}</h3>
+      <h3>{user.employmentStatus}</h3>
       <h3>
-        <a href={user.github}>Github</a>, <a href={user.linkedin}>LinkedIn</a>
-        {user.otherAcc.map(arr => {
-          return <a href={arr.link}>, {arr.name}</a>
-        })}
+        {/* {user.contactLinks.map(obj => {
+          return <a href={obj.link}>{obj.name} </a>
+        })} */}
         {/* <div className='icon'>
           <i className='fab fa-github' />
         </div> */}
       </h3>
       <p>{user.bio}</p>
-      <p>Final Project: {user.finalProj}</p>
+      <p>Final Project: {user.finalProject}</p>
     </div>
   )
 }

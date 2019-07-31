@@ -41,13 +41,15 @@ const CardList = () => {
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    fetch()
+    fetch('http://localhost:8000/directory')
+      .then(res => res.json())
+      .then(data => setUsers(data.data))
   }, [])
 
   return (
     <div className='container card-list'>
       {users.map(item => {
-        return <Card key={item.name} user={item} />
+        return <Card key={item._id} user={item} />
       })}
     </div>
   )

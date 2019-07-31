@@ -45,12 +45,10 @@ const StudentSchema = mongoose.Schema({
   bio: {
     type: String
   },
-  contactLinks: [
-    {
-      name: String,
-      link: String
-    }
-  ],
+  contactLinks: [{
+    name: {type: String},
+    last: {type: String}
+  }]
   finalProject: {
     type: String
   }
