@@ -1,0 +1,14 @@
+$color-green-light: rgb(130,190,66);
+$color-green-middle: rgb(130,190,66);
+$color-green-full: rgb(130, 190, 66);
+$color-nav-footer-bg: rgb(54,54,54);
+$color-white: rgb(255,255,255);
+$color-input-bg: rgb(235,235,235);
+$color-text-body: rgb(112,112,112);
+$color-nav-text: rgb(214,214,214);
+$color-input-text: rgb(161,161,161);
+
+$gradient-light-full: linear-gradient($color-green-light 11%, $color-green-full 92%);
+$gradient-full-light: linear-gradient($color-green-full 11%, $color-green-light 92%);
+
+$font-family: 'Merriweather Sans', sans-serif;
