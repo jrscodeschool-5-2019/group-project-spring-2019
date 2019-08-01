@@ -1,30 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from './JRS_Coding_School_logo.png'
 import 'bulma/css/bulma.css'
+import CardList from './components/card-list/CardList'
 
 function Page() {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/directory')
+      .then(res => res.json())
+      .then(data => setUsers(data.data))
+  }, [])
+
   return (
     // Navagation section and logo
 
     <div>
-      <nav class="navbar">
-        <div class="container">
-          <div class="navbar-brand">
-            <a href="../">
-              <img src={Logo} alt="Logo" width="250px" />
+      <nav className='navbar'>
+        <div className='container'>
+          <div className='navbar-brand'>
+            <a href='../'>
+              <img src={Logo} alt='Logo' width='250px' />
             </a>
-            <span class="navbar-burger burger" data-target="navbarMenu">
+            <span className='navbar-burger burger' data-target='navbarMenu'>
               <span />
               <span />
               <span />
             </span>
           </div>
-          <div id="navbarMenu" class="navbar-menu">
-            <div class="navbar-end">
-              <a class="navbar-item is-active">Home</a>
-              <a class="navbar-item">something</a>
-              <a class="navbar-item">something</a>
-              <a class="navbar-item">something</a>
+          <div id='navbarMenu' className='navbar-menu'>
+            <div className='navbar-end'>
+              <a className='navbar-item is-active'>Home</a>
+              <a className='navbar-item'>something</a>
+              <a className='navbar-item'>something</a>
+              <a className='navbar-item'>something</a>
             </div>
           </div>
         </div>
@@ -32,24 +41,24 @@ function Page() {
 
       {/* end of the nav section , search section below */}
 
-      <div class="container">
-        <div id="flow">
-          <span class="flow-1" />
-          <span class="flow-2" />
-          <span class="flow-3" />
+      <div className='container'>
+        <div id='flow'>
+          <span className='flow-1' />
+          <span className='flow-2' />
+          <span className='flow-3' />
         </div>
-        <div class="section">
-          <div class="box">
-            <div class="field has-addons">
-              <div class="control is-expanded">
+        <div className='section'>
+          <div className='box'>
+            <div className='field has-addons'>
+              <div className='control is-expanded'>
                 <input
-                  class="input has-text-centered"
-                  type="search"
-                  placeholder="Search Users"
+                  className='input has-text-centered'
+                  type='search'
+                  placeholder='Search Users'
                 />
               </div>
-              <div class="control">
-                <a class="button is-info">Search</a>
+              <div className='control'>
+                <a className='button is-info'>Search</a>
               </div>
             </div>
           </div>
@@ -59,11 +68,7 @@ function Page() {
       {/* End of the search */}
 
       {/* columns for student cards */}
-      <div class="row columns">
-        <div class="column is-one-third"> cards go here </div>
-        <div class="column is-one-third"> cards go here </div>
-        <div class="column is-one-third"> cards go here </div>
-      </div>
+      <CardList users={users} />
     </div>
   )
 }

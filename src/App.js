@@ -9,10 +9,10 @@ function App() {
   return (
     <div>
       <Router>
-        <LandingPage path="/" />
-        <Registration path="registration" />
-        <Login path="/student-login" />
-        <Page path="/student-view" />
+        <LandingPage path='/' />
+        <Registration path='registration' />
+        <Login path='/student-login' />
+        <Page path='/student-view' />
       </Router>
     </div>
   )
