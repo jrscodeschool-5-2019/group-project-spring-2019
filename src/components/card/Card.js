@@ -12,17 +12,16 @@ const Card = ({ user }) => {
     <div className='box card'>
       <img alt={`${user._id} img`} src={user.img} />
       <h1>
-        {user.name.first} {user.name.last}
+        <strong>
+          {user.name.first} {user.name.last}
+        </strong>
       </h1>
       <h3>{user.gradYear}</h3>
       <h3>{user.employmentStatus}</h3>
       <h3>
-        {/* {user.contactLinks.map(obj => {
-          return <a href={obj.link}>{obj.name} </a>
-        })} */}
-        {/* <div className='icon'>
-          <i className='fab fa-github' />
-        </div> */}
+        <a href={user.contactLinks.gitHub}>Github </a>
+        <a href={user.contactLinks.linkedIn}>LinkedIn </a>
+        <a href={user.contactLinks.other}>Other</a>
       </h3>
       <p>{user.bio}</p>
       <p>Final Project: {user.finalProject}</p>

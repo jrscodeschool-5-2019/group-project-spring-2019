@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from './JRS_Coding_School_logo.png'
 import 'bulma/css/bulma.css'
 import CardList from './components/card-list/CardList'
 
 function Page() {
+  const [users, setUsers] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/directory')
+      .then(res => res.json())
+      .then(data => setUsers(data.data))
+  }, [])
+
   return (
     // Navagation section and logo
 
@@ -60,7 +68,7 @@ function Page() {
       {/* End of the search */}
 
       {/* columns for student cards */}
-      <CardList />
+      <CardList users={users} />
     </div>
   )
 }
