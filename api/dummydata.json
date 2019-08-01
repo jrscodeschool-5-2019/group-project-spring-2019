@@ -5,11 +5,11 @@
       "gradYear": "2017",
       "employmentStatus": "Bird Tech, Co.",
       "bio": "Freelancer. Loves React and birdwatching.",
-      "contactLinks": [
-        { "name": "Github", "link": "www.github.com/birdwatcher" },
-        { "name": "LinkedIn", "link": "www.linkedin.com/in/birdwatcher" },
-        { "name": "Lorem ipsum", "link": "www.google.com" }
-      ],
+      "contactLinks": {
+        "gitHub": "www.github.com/birdwatcher",
+        "linkedIn": "www.linkedin.com/in/birdwatcher",
+        "other": "Lorem ipsum"
+      },
       "finalProject": "Nest Egg",
       "name": {
         "first": "Cindy",
@@ -26,11 +26,11 @@
       "gradYear": "2016",
       "employmentStatus": "Snakes R Us",
       "bio": "Mostly code in Python",
-      "contactLinks": [
-        { "name": "Github", "link": "www.github.com/monty" },
-        { "name": "LinkedIn", "link": "www.linkedin.com/in/monty" },
-        { "name": "Lorem ipsum", "link": "www.twitter.com/monty" }
-      ],
+      "contactLinks": {
+        "gitHub": "www.github.com/monty",
+        "linkedIn": "www.linkedin.com/in/monty",
+        "other": "www.twitter.com/monty"
+      },
       "finalProject": "Sun Spotter",
       "name": {
         "first": "Monty",
@@ -47,11 +47,11 @@
       "gradYear": "2018",
       "employmentStatus": "Unemployed",
       "bio": "JavaScript, React, Mongo, and PHP",
-      "contactLinks": [
-        { "name": "Github", "link": "www.github.com/sam" },
-        { "name": "LinkedIn", "link": "www.linkedin.com/in/sam" },
-        { "name": "Lorem ipsum", "link": "www.twitter.com/sam" }
-      ],
+      "contactLinks": {
+        "gitHub": "www.github.com/sam",
+        "linkedIn": "www.linkedin.com/in/sam",
+        "other": "www.twitter.com/sam"
+      },
       "finalProject": "Playing Dead: The Game",
       "name": {
         "first": "Sam",
@@ -68,10 +68,11 @@
       "gradYear": "2019",
       "employmentStatus": "Unemployed",
       "bio": "Full stack developer seeking employment in the Charleston area",
-      "contactLinks": [
-        { "name": "Github", "link": "www.github.com/gretchen" },
-        { "name": "LinkedIn", "link": "www.linkedin.com/in/gretchen" }
-      ],
+      "contactLinks": {
+        "gitHub": "www.github.com/gretchen",
+        "linkedIn": "www.linkedin.com/in/gretchen",
+        "other": ""
+      },
       "finalProject": "Honeybadger eCommerce Platform",
       "name": {
         "first": "Gretchen",
@@ -88,10 +89,11 @@
       "gradYear": "2019",
       "employmentStatus": "Unemployed",
       "bio": "Frontend Wizard, loves React",
-      "contactLinks": [
-        { "name": "Github", "link": "www.github.com/otto" },
-        { "name": "LinkedIn", "link": "www.linkedin.com/in/otto" }
-      ],
+      "contactLinks": {
+        "gitHub": "www.github.com/otto",
+        "linkedIn": "www.linkedin.com/in/otto",
+        "other": ""
+      },
       "finalProject": "Seashell ID App",
       "name": {
         "first": "Otto",

@@ -38,7 +38,9 @@ router
       foundStudent.employmentStatus = req.body.employmentStatus
       foundStudent.seekingEmployment = req.body.seekingEmployment
       foundStudent.bio = req.body.bio
-      foundStudent.contactLinks = req.body.contactLinks
+      foundStudent.contactLinks.gitHub = req.body.gitHub
+      foundStudent.contactLinks.linkedIn = req.body.linkedIn
+      foundStudent.contactLinks.other = req.body.otherLink
       foundStudent.finalProject = req.body.finalProject
       foundStudent.save()
 
