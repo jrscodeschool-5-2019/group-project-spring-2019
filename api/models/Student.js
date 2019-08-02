@@ -1,18 +1,19 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
-const StudentSchema = mongoose.Schema({
+const StudentSchema = new mongoose.Schema({
   username: {
     type: String,
     unique: true,
     required: true,
   },
+  password: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     unique: true,
-    required: true,
-  },
-  passwordHash: {
-    type: String,
     required: true,
   },
   name: {
@@ -35,7 +36,7 @@ const StudentSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  employmentStatus: {
+  employer: {
     type: String,
   },
   seekingEmployment: {
@@ -55,11 +56,15 @@ const StudentSchema = mongoose.Schema({
     other: {
       type: String,
     },
-    finalProject: {
-      type: String,
-    },
+  },
+  finalProject: {
+    type: String,
   },
 });
+
+// add a bunch of important methods to StudentSchema
+// to enable user authentication
+StudentSchema.plugin(passportLocalMongoose);
 
 const Student = mongoose.model('student', StudentSchema);
 
