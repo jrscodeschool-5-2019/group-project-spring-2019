@@ -3,6 +3,7 @@
   flex-direction: column;
   transform: translateZ(0);
   transition: transform 0.25s ease-out;
+  justify-content: center;
 }
 
 .card:hover {
@@ -11,4 +12,12 @@
 
 .label {
   font-size: 0.75em;
+}
+
+.avatar {
+  vertical-align: middle;
+  object-fit: cover;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
 }

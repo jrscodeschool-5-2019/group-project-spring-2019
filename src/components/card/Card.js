@@ -10,7 +10,7 @@ import './card-styles.css'
 const Card = ({ user }) => {
   return (
     <div className='box card'>
-      <img alt={`${user._id} img`} src={user.img} />
+      <img className='avatar' alt={`${user._id} img`} src={user.img} />
       <br />
       <h1>
         <strong>
