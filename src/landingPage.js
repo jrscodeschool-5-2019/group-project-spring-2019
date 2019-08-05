@@ -1,10 +1,10 @@
 import React from "react";
 import Logo from "./JRS_Coding_School_logo.png";
-import { Router, Link } from "@reach/router";
+import { Link } from "@reach/router";
 import "bulma/css/bulma.css";
-import Registration from "./registration-form";
 
 function LandingPage() {
+  document.onload = document.title = "JRS Student Directory - Landing";
   return (
     <span>
       <div className="has-text-centered">

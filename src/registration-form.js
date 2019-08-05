@@ -1,19 +1,8 @@
-import React, { Component, useReducer } from "react";
+import React, { useReducer } from "react";
 import { Link, navigate } from "@reach/router";
 import { merge } from "ramda";
 import Logo from "./JRS_Coding_School_logo.png";
 import "bulma/css/bulma.css";
-
-var ID = function() {
-  return (
-    "_" +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
-};
-
-console.log(ID());
 
 const initialState = {
   name: {
@@ -55,6 +44,14 @@ function reducer(state, { type, payload }) {
 
 export default function Registration(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
+  document.onload = document.title = "Student Registration";
+  const isEnabled =
+    state.name.first.length > 0 &&
+    state.email.includes("@") &&
+    state.email.includes(".com") &&
+    state.email.length > 0 &&
+    state.passwordHash.length > 8 &&
+    state.username.length > 0;
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -69,14 +66,36 @@ export default function Registration(props) {
       });
   }
 
+  function emailValidationColors() {
+    if (!state.email.includes("@") && !state.email.includes(".com")) {
+      document.getElementById("email-input").style.outlineColor = "red";
+    } else {
+      document.getElementById("email-input").style.outlineColor = "green";
+    }
+  }
+
+  function passwordValidation() {
+    if (state.passwordHash.length < 8) {
+      document.getElementById("password-input").style.outlineColor = "red";
+    } else {
+      document.getElementById("password-input").style.outlineColor = "green";
+    }
+  }
+
+  function validationColors() {
+    emailValidationColors();
+    passwordValidation();
+  }
+
   return (
     <span className="reg-page box" style={{ backgroundColor: "honeydew" }}>
       <div className="has-text-centered">
         <Link to="/">
-          <img src={Logo} />
+          <img src={Logo} alt="JRS Logo" />
         </Link>
       </div>
       <form
+        onChange={validationColors}
         onSubmit={handleSubmit}
         className="columns has-text-centered is-half"
       >
@@ -84,6 +103,7 @@ export default function Registration(props) {
           <h1>Student Registration</h1>
           <div className="reg-name-input">
             <input
+              id="first-name-input"
               className="form-input"
               type="text"
               name="first_name"
@@ -114,6 +134,7 @@ export default function Registration(props) {
           </div>
           <div className="reg-name-input">
             <input
+              id="email-input"
               className="form-input"
               type="text"
               name="email"
@@ -144,6 +165,7 @@ export default function Registration(props) {
           </div>
           <div className="reg-name-input">
             <input
+              id="password-input"
               className="form-input"
               type="password"
               name="passwordHash"
@@ -154,11 +176,12 @@ export default function Registration(props) {
                   payload: e.target.value
                 })
               }
-              placeholder="Password"
+              placeholder="Password (At least 8 characters)"
             />
           </div>
           <div>
             <button
+              disabled={!isEnabled}
               type="submit"
               className="button is-centered is-rounded reg-button"
             >
@@ -170,5 +193,3 @@ export default function Registration(props) {
     </span>
   );
 }
-
-// export default Registration;
