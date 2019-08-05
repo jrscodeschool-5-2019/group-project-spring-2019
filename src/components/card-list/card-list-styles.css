@@ -1,15 +1,10 @@
 .card-list {
-  width: 85vw;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-}
-
-@media only screen and (min-width: 600px) {
-  .card-list {
-    grid-template-columns: 1fr;
-  }
+  /* align-items: center; */
+  padding: 0px 20px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -20,6 +15,6 @@
 
 @media only screen and (min-width: 992px) {
   .card-list {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
