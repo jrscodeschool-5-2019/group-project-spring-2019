@@ -1,10 +1,9 @@
 .card-list {
   margin: 0 auto;
-  margin-right: 50;
   display: grid;
   grid-template-columns: 1fr;
   grid-gap: 20px;
-  align-items: center;
+  /* align-items: center; */
   padding: 0px 20px;
 }
 
