@@ -2,16 +2,31 @@ import React, { useEffect, useState } from 'react'
 import Logo from './JRS_Coding_School_logo.png'
 import 'bulma/css/bulma.css'
 import CardList from './components/card-list/CardList'
+import SearchDirectory from './components/search-directory/SearchDirectory'
 
 function Page() {
   const [users, setUsers] = useState([])
-
+  const [search, setSearch] = useState('')
+  // remove this const [ v, setResults] = useState([])
   useEffect(() => {
     fetch('http://localhost:8000/directory')
       .then(res => res.json())
       .then(data => setUsers(data.data))
+      //.then(user => setUsers())
   }, [])
+  const handleChange = e => {
+    setSearch(e.target.value)
+    console.log(e.target.value)
+    console.log(users)
+    console.log(filteredUsers)
+   
+  }
+   
 
+  const filteredUsers = users.filter(user =>
+    user.name.first.toLowerCase().includes(search.toLowerCase()) +
+    user.name.last.toLowerCase().includes(search.toLowerCase())
+  )
   return (
     // Navagation section and logo
 
@@ -40,7 +55,7 @@ function Page() {
       </nav>
 
       {/* end of the nav section , search section below */}
-
+     
       <div className='container'>
         <div id='flow'>
           <span className='flow-1' />
@@ -51,14 +66,10 @@ function Page() {
           <div className='box'>
             <div className='field has-addons'>
               <div className='control is-expanded'>
-                <input
-                  className='input has-text-centered'
-                  type='search'
-                  placeholder='Search Users'
-                />
+              <SearchDirectory handleChange={handleChange} />
               </div>
               <div className='control'>
-                <a className='button is-info'>Search</a>
+                 <a className='button is-info'>Search</a>
               </div>
             </div>
           </div>
@@ -66,9 +77,9 @@ function Page() {
       </div>
 
       {/* End of the search */}
-
+      
       {/* columns for student cards */}
-      <CardList users={users} />
+      <CardList users={filteredUsers} />
     </div>
   )
 }
