@@ -20,7 +20,7 @@ function Page() {
       <NavMenu />
       <div className='columns'>
         <SideBar />
-        <div className='column is-8'>
+        <div className='column is-9'>
           {/* end of the nav section , search section below */}
           <div className='container'>
             <div id='flow'>
