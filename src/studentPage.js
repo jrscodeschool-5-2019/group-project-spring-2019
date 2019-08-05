@@ -5,7 +5,6 @@ import SearchDirectory from './components/search-directory/SearchDirectory'
 import NavMenu from './navMenu'
 import SideBar from './components/sidebar/Sidebar'
 
-
 function Page() {
   const [users, setUsers] = useState([])
   const [search, setSearch] = useState('')
@@ -14,20 +13,19 @@ function Page() {
     fetch('http://localhost:8000/directory')
       .then(res => res.json())
       .then(data => setUsers(data.data))
-      //.then(user => setUsers())
+    //.then(user => setUsers())
   }, [])
   const handleChange = e => {
     setSearch(e.target.value)
     console.log(e.target.value)
     console.log(users)
     console.log(filteredUsers)
-   
   }
-   
 
-  const filteredUsers = users.filter(user =>
-    user.name.first.toLowerCase().includes(search.toLowerCase()) +
-    user.name.last.toLowerCase().includes(search.toLowerCase())
+  const filteredUsers = users.filter(
+    user =>
+      user.name.first.toLowerCase().includes(search.toLowerCase()) +
+      user.name.last.toLowerCase().includes(search.toLowerCase())
   )
   return (
     // Navagation section and logo
@@ -57,11 +55,13 @@ function Page() {
               </div>
             </div>
           </div>
+          <CardList users={filteredUsers} />
+        </div>
+      </div>
 
       {/* End of the search */}
-      
+
       {/* columns for student cards */}
-      <CardList users={filteredUsers} />
     </div>
   )
 }
