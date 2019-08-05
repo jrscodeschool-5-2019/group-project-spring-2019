@@ -1,32 +1,41 @@
-import React, { useEffect, useState } from 'react'
-import 'bulma/css/bulma.css'
-import CardList from '../components/card-list/CardList'
-import SearchDirectory from '../components/search-directory/SearchDirectory'
-import NavMenu from '../components/navMenu'
-import SideBar from '../components/sidebar/Sidebar'
+import React, { useEffect, useState } from 'react';
+import 'bulma/css/bulma.css';
+import CardList from '../components/card-list/CardList';
+import SearchDirectory from '../components/search-directory/SearchDirectory';
+import NavMenu from '../components/navMenu';
+import SideBar from '../components/sidebar/Sidebar';
 
 function Page() {
-  const [users, setUsers] = useState([])
-  const [search, setSearch] = useState('')
+  //may need to write state logic for the toggles
+
+  const { filter, setFilter } = useState({ employed: true, current: true });
+
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState('');
   // remove this const [ v, setResults] = useState([])
   useEffect(() => {
     fetch('http://localhost:8000/directory')
       .then(res => res.json())
-      .then(data => setUsers(data.data))
+      .then(data => setUsers(data.data));
     //.then(user => setUsers())
-  }, [])
+  }, []);
   const handleChange = e => {
-    setSearch(e.target.value)
-    console.log(e.target.value)
-    console.log(users)
-    console.log(filteredUsers)
-  }
+    setSearch(e.target.value);
+    console.log(e.target.value);
+    console.log(users);
+    console.log(filteredUsers);
+  };
 
   const filteredUsers = users.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
       user.name.last.toLowerCase().includes(search.toLowerCase())
-  )
+  );
+
+  const inputChange = e => {
+    console.log(e.target.id);
+  };
+
   return (
     // Navagation section and logo
 
@@ -52,6 +61,10 @@ function Page() {
                     <a className='button is-info'>Search</a>
                   </div>
                 </div>
+                <label className='checkbox'>
+                  <input onChange={inputChange} type='checkbox' id='hello' />
+                  Remember me
+                </label>
               </div>
             </div>
           </div>
@@ -63,7 +76,7 @@ function Page() {
 
       {/* columns for student cards */}
     </div>
-  )
+  );
 }
 
-export default Page
+export default Page;
