@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import 'bulma/css/bulma.css'
-import CardList from './components/card-list/CardList'
-import SearchDirectory from './components/search-directory/SearchDirectory'
-import NavMenu from './navMenu'
-import SideBar from './components/sidebar/Sidebar'
+import CardList from '../components/card-list/CardList'
+import SearchDirectory from '../components/search-directory/SearchDirectory'
+import NavMenu from '../components/navMenu'
+import SideBar from '../components/sidebar/Sidebar'
 
 function Page() {
   const [users, setUsers] = useState([])
