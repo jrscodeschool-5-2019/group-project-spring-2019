@@ -53,19 +53,6 @@ router.post('/registration', async (req, res) => {
         }
       });
   });
-  // const newStudent = new Student({
-  //   password: password,
-  //   username: username,
-  //   email: email,
-  //   name: {
-  //     first: name.first,
-  //     last: name.last,
-  //   },
-  // });
-  // newStudent.save((err, savedStudent) => {
-  //   if (err) return res.json(err);
-  //   res.json(savedStudent);
-  // });
 });
 
 // /directory/ (Directory landing page)
@@ -100,6 +87,7 @@ router
       foundStudent.employer = req.body.employer;
       foundStudent.seekingEmployment = req.body.seekingEmployment;
       foundStudent.bio = req.body.bio;
+      foundStudent.location = req.body.location;
       foundStudent.contactLinks.gitHub = req.body.gitHub;
       foundStudent.contactLinks.linkedIn = req.body.linkedIn;
       foundStudent.contactLinks.other = req.body.otherLink;
