@@ -1,9 +1,9 @@
 import React from 'react'
-import LandingPage from './landingPage'
-import Registration from './registration-form'
-import Login from './login-page'
-import Page from './studentPage'
-import { Router, Link } from '@reach/router'
+import LandingPage from './routes/landingPage'
+import Registration from './routes/registration-form'
+import Login from './routes/login-page'
+import Page from './routes/studentPage'
+import { Router } from '@reach/router'
 
 function App() {
   return (
