@@ -16,10 +16,56 @@ router.use((req, res, next) => {
 });
 
 // /register/ (Registration component)
-router.route('/register').post(async (req, res) => {
-  const newStudent = await new Student(req.body);
-  newStudent.save();
-  res.json({status: 'ok', newStudent});
+router.post('/registration', async (req, res) => {
+  console.log('user signup');
+
+  const {username, password, name, email} = req.body;
+  // ADD VALIDATION
+  Student.findOne({email: email}, (err, student) => {
+    if (err) {
+      console.log('students.js post error: ', err);
+    } else if (student) {
+      res.json({
+        error: 'Sorry, that email is already in use',
+      });
+    } else
+      Student.findOne({username: username}, (err, student) => {
+        if (err) {
+          console.log('students.js post error: ', err);
+        } else if (student) {
+          res.json({
+            error: 'Sorry, that username is already in use',
+          });
+        } else {
+          const newStudent = new Student({
+            username: username,
+            password: password,
+            email: email,
+            name: {
+              first: name.first,
+              last: name.last,
+            },
+          });
+          newStudent.save((err, savedStudent) => {
+            if (err) return res.json(err);
+            res.json(savedStudent);
+          });
+        }
+      });
+  });
+  // const newStudent = new Student({
+  //   password: password,
+  //   username: username,
+  //   email: email,
+  //   name: {
+  //     first: name.first,
+  //     last: name.last,
+  //   },
+  // });
+  // newStudent.save((err, savedStudent) => {
+  //   if (err) return res.json(err);
+  //   res.json(savedStudent);
+  // });
 });
 
 // /directory/ (Directory landing page)

@@ -4,6 +4,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const LocalStrategy = require('passport-local');
+const morgan = require('morgan');
 
 const Student = require('./models/Student');
 const StudentRoutes = require('./routes/students');
@@ -13,6 +14,7 @@ mongoose.set('useCreateIndex', true);
 
 const app = express();
 app.use(cors());
+app.use(morgan('dev'));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -52,6 +54,6 @@ app.use((req, res, next) => {
 });
 
 // use the StudentRoutes file
-app.use('/directory', StudentRoutes);
+app.use(StudentRoutes);
 
 app.listen(8000, () => console.log('Server is listening on PORT 8000'));

@@ -1,54 +1,30 @@
-import React, { Component, useReducer } from "react";
-import { Link, navigate } from "@reach/router";
-import { merge } from "ramda";
-import Logo from "./JRS_Coding_School_logo.png";
-import "bulma/css/bulma.css";
-
-var ID = function() {
-  return (
-    "_" +
-    Math.random()
-      .toString(36)
-      .substr(2, 9)
-  );
-};
-
-console.log(ID());
+import React, {useReducer} from 'react';
+import {Link, navigate} from '@reach/router';
+import {merge} from 'ramda';
+import Logo from './JRS_Coding_School_logo.png';
+import 'bulma/css/bulma.css';
 
 const initialState = {
   name: {
-    first: "",
-    last: ""
+    first: '',
+    last: '',
   },
-  contactLinks: {
-    gitHub: "",
-    linkedIn: "",
-    other: ""
-  },
-  currentStudent: false,
-  seekingEmployment: false,
-  img: "",
-  gradYear: "",
-  employmentStatus: "",
-  bio: "",
-  finalProject: "",
-  username: "",
-  email: "",
-  passwordHash: "",
-  __v: 0
+  email: '',
+  username: '',
+  password: '',
 };
 
-function reducer(state, { type, payload }) {
-  if (type === "SET_FIRST") {
-    return merge(state, { name: { first: payload } });
-  } else if (type === "SET_LAST") {
-    return merge(state, { name: { ...state.name, last: payload } });
-  } else if (type === "SET_EMAIL") {
-    return merge(state, { email: payload });
-  } else if (type === "SET_USERNAME") {
-    return merge(state, { username: payload });
-  } else if (type === "SET_PASSWORD") {
-    return merge(state, { passwordHash: payload });
+function reducer(state, {type, payload}) {
+  if (type === 'SET_FIRST') {
+    return merge(state, {name: {...state.name, first: payload}});
+  } else if (type === 'SET_LAST') {
+    return merge(state, {name: {...state.name, last: payload}});
+  } else if (type === 'SET_EMAIL') {
+    return merge(state, {email: payload});
+  } else if (type === 'SET_USERNAME') {
+    return merge(state, {username: payload});
+  } else if (type === 'SET_PASSWORD') {
+    return merge(state, {password: payload});
   }
   return state;
 }
@@ -56,112 +32,120 @@ function reducer(state, { type, payload }) {
 export default function Registration(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  function handleSubmit(event) {
+  const handleSubmit = event => {
     event.preventDefault();
-    fetch("http://localhost:8000/directory", {
-      method: "post",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(state)
+
+    fetch('http://localhost:8000/registration', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(state),
     })
-      .then(res => res.json())
+      .then(response => response.json())
       .then(res => {
-        navigate("/student-login");
+        console.log(res);
+        if (!res.error) {
+          console.log('successful signup');
+          navigate('/student-login');
+        } else {
+          console.log('username or email already in use');
+        }
+      })
+      .catch(error => {
+        console.log('Sign up server error: ');
+        console.log(error);
       });
-  }
+  };
 
   return (
-    <span className="reg-page box" style={{ backgroundColor: "honeydew" }}>
-      <div className="has-text-centered">
-        <Link to="/">
+    <span className='reg-page box' style={{backgroundColor: 'honeydew'}}>
+      <div className='has-text-centered'>
+        <Link to='/'>
           <img src={Logo} />
         </Link>
       </div>
-      <form
-        onSubmit={handleSubmit}
-        className="columns has-text-centered is-half"
-      >
-        <div className="column">
+      <form onSubmit={handleSubmit} className='columns has-text-centered is-half'>
+        <div className='column'>
           <h1>Student Registration</h1>
-          <div className="reg-name-input">
+          <div className='reg-name-input'>
             <input
-              className="form-input"
-              type="text"
-              name="first_name"
+              className='form-input'
+              type='text'
+              name='first_name'
               value={state.name.first}
               onChange={e =>
                 dispatch({
-                  type: "SET_FIRST",
-                  payload: e.target.value
+                  type: 'SET_FIRST',
+                  payload: e.target.value,
                 })
               }
-              placeholder="First Name"
+              placeholder='First Name'
             />
           </div>
-          <div className="reg-name-input">
+          <div className='reg-name-input'>
             <input
-              className="form-input"
-              type="text"
-              name="last_name"
+              className='form-input'
+              type='text'
+              name='last_name'
               value={state.name.last}
               onChange={e =>
                 dispatch({
-                  type: "SET_LAST",
-                  payload: e.target.value
+                  type: 'SET_LAST',
+                  payload: e.target.value,
                 })
               }
-              placeholder="Last Name"
+              placeholder='Last Name'
             />
           </div>
-          <div className="reg-name-input">
+          <div className='reg-name-input'>
             <input
-              className="form-input"
-              type="text"
-              name="email"
+              className='form-input'
+              type='text'
+              name='email'
               value={state.email}
               onChange={e =>
                 dispatch({
-                  type: "SET_EMAIL",
-                  payload: e.target.value
+                  type: 'SET_EMAIL',
+                  payload: e.target.value,
                 })
               }
-              placeholder="Email Address"
+              placeholder='Email Address'
             />
           </div>
-          <div className="reg-name-input">
+          <div className='reg-name-input'>
             <input
-              className="form-input"
-              type="text"
-              name="username"
+              className='form-input'
+              type='text'
+              name='username'
               value={state.username}
               onChange={e =>
                 dispatch({
-                  type: "SET_USERNAME",
-                  payload: e.target.value
+                  type: 'SET_USERNAME',
+                  payload: e.target.value,
                 })
               }
-              placeholder="Username"
+              placeholder='Username'
             />
           </div>
-          <div className="reg-name-input">
+
+          <div className='reg-name-input'>
             <input
-              className="form-input"
-              type="password"
-              name="passwordHash"
-              value={state.passwordHash}
+              className='form-input'
+              type='password'
+              name='password'
+              value={state.password}
               onChange={e =>
                 dispatch({
-                  type: "SET_PASSWORD",
-                  payload: e.target.value
+                  type: 'SET_PASSWORD',
+                  payload: e.target.value,
                 })
               }
-              placeholder="Password"
+              placeholder='Password'
             />
           </div>
           <div>
             <button
-              type="submit"
-              className="button is-centered is-rounded reg-button"
-            >
+              type='submit'
+              className='button is-centered is-rounded reg-button'>
               Submit
             </button>
           </div>
