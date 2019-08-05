@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Logo from './JRS_Coding_School_logo.png'
 import 'bulma/css/bulma.css'
 import CardList from './components/card-list/CardList'
 import SearchDirectory from './components/search-directory/SearchDirectory'
+import NavMenu from './navMenu'
+
 
 function Page() {
   const [users, setUsers] = useState([])
@@ -31,30 +32,10 @@ function Page() {
     // Navagation section and logo
 
     <div>
-      <nav className='navbar'>
-        <div className='container'>
-          <div className='navbar-brand'>
-            <a href='../'>
-              <img src={Logo} alt='Logo' width='250px' />
-            </a>
-            <span className='navbar-burger burger' data-target='navbarMenu'>
-              <span />
-              <span />
-              <span />
-            </span>
-          </div>
-          <div id='navbarMenu' className='navbar-menu'>
-            <div className='navbar-end'>
-              <a className='navbar-item is-active'>Home</a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <NavMenu />
 
       {/* end of the nav section , search section below */}
+
      
       <div className='container'>
         <div id='flow'>
