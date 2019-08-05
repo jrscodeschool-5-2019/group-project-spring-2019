@@ -8,3 +8,7 @@
 .card:hover {
   transform: scale(1.05);
 }
+
+.label {
+  font-size: 0.75em;
+}
