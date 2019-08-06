@@ -24,29 +24,63 @@ function Page() {
   }
 
   const checkboxClick = e => {
-    console.log(e.target.id)
-    let checkedUsers = []
-    if (e.target.id === 'seekingEmploymentFalse') {
-      checkedUsers = checkedUsers.concat(
-        users.filter(user => user.seekingEmployment === false)
-      )
+    const employed = document.getElementById('employed')
+    const seeking = document.getElementById('seeking')
+    const current = document.getElementById('current')
+    const alumni = document.getElementById('alumni')
+    if (employed.checked) {
+      if (current.checked) {
+        // disable seeking and alumni
+        // may also have to put disable = false for others. try it without and see!
+        setFilteredCards(
+          users.filter(
+            user =>
+              user.seekingEmployment === false && user.currentStudent === true
+          )
+        )
+      } else if (alumni.checked) {
+        //disable seeking and current
+        setFilteredCards(
+          users.filter(
+            user =>
+              user.seekingEmployment === false && user.currentStudent === false
+          )
+        )
+      } else {
+        //disable seeking
+        setFilteredCards(users.filter(user => user.seekingEmployment === false))
+      }
+    } else if (seeking.checked) {
+      if (current.checked) {
+        //disable employed and alumni
+        setFilteredCards(
+          users.filter(
+            user =>
+              user.seekingEmployment === true && user.currentStudent === true
+          )
+        )
+      } else if (alumni.checked) {
+        //disable employed and current
+        setFilteredCards(
+          users.filter(
+            user =>
+              user.seekingEmployment === true && user.currentStudent === false
+          )
+        )
+      } else {
+        //disable employed
+        setFilteredCards(users.filter(user => user.seekingEmployment === true))
+      }
+    } else if (current.checked) {
+      //disable alumni
+      setFilteredCards(users.filter(user => user.currentStudent === true))
+    } else if (alumni.checked) {
+      //disable current
+      setFilteredCards(users.filter(user => user.currentStudent === false))
+    } else {
+      //nothing disabled
+      setFilteredCards(users)
     }
-    if (e.target.id === 'seekingEmploymentTrue') {
-      checkedUsers = checkedUsers.concat(
-        users.filter(user => user.seekingEmployment === true)
-      )
-    }
-    if (e.target.id === 'currentStudentTrue') {
-      checkedUsers = checkedUsers.concat(
-        users.filter(user => user.currentStudent === true)
-      )
-    }
-    if (e.target.id === 'currentStudentFalse') {
-      checkedUsers = checkedUsers.concat(
-        users.filter(user => user.currentStudent === false)
-      )
-    }
-    setFilteredCards(checkedUsers)
   }
 
   const filteredUsers = filteredCards.filter(
@@ -116,7 +150,7 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='seekingEmploymentFalse'
+                                  id='employed'
                                   onClick={checkboxClick}
                                 />{' '}
                                 Happily Employed
@@ -126,7 +160,7 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='seekingEmploymentTrue'
+                                  id='seeking'
                                   onClick={checkboxClick}
                                 />{' '}
                                 Seeking Employment
@@ -140,9 +174,8 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='currentStudentTrue'
+                                  id='current'
                                   onClick={checkboxClick}
-                                  tof='true'
                                 />{' '}
                                 Current Students
                               </label>
@@ -151,9 +184,8 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='currentStudentFalse'
+                                  id='alumni'
                                   onClick={checkboxClick}
-                                  tof='false'
                                 />{' '}
                                 Alumni
                               </label>
