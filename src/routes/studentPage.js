@@ -7,19 +7,49 @@ import SideBar from '../components/sidebar/Sidebar'
 
 function Page() {
   const [users, setUsers] = useState([])
+  const [filteredCards, setFilteredCards] = useState([])
   const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:8000/directory')
       .then(res => res.json())
-      .then(data => setUsers(data.data))
+      .then(data => {
+        setUsers(data.data)
+        setFilteredCards(data.data)
+      })
   }, [])
 
   const handleChange = e => {
     setSearch(e.target.value)
   }
 
-  const filteredUsers = users.filter(
+  const checkboxClick = e => {
+    console.log(e.target.id)
+    let checkedUsers = []
+    if (e.target.id === 'seekingEmploymentFalse') {
+      checkedUsers = checkedUsers.concat(
+        users.filter(user => user.seekingEmployment === false)
+      )
+    }
+    if (e.target.id === 'seekingEmploymentTrue') {
+      checkedUsers = checkedUsers.concat(
+        users.filter(user => user.seekingEmployment === true)
+      )
+    }
+    if (e.target.id === 'currentStudentTrue') {
+      checkedUsers = checkedUsers.concat(
+        users.filter(user => user.currentStudent === true)
+      )
+    }
+    if (e.target.id === 'currentStudentFalse') {
+      checkedUsers = checkedUsers.concat(
+        users.filter(user => user.currentStudent === false)
+      )
+    }
+    setFilteredCards(checkedUsers)
+  }
+
+  const filteredUsers = filteredCards.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
@@ -32,10 +62,6 @@ function Page() {
   const dropdownTrigger = e => {
     const triggerClass = e.target.parentNode.parentNode.parentNode
     triggerClass.classList.toggle('is-active')
-  }
-
-  const checkboxClick = e => {
-    console.log(e.target.id)
   }
 
   return (
@@ -114,7 +140,7 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='currentStudent'
+                                  id='currentStudentTrue'
                                   onClick={checkboxClick}
                                   tof='true'
                                 />{' '}
@@ -125,7 +151,7 @@ function Page() {
                               <label className='checkbox'>
                                 <input
                                   type='checkbox'
-                                  id='currentStudent'
+                                  id='currentStudentFalse'
                                   onClick={checkboxClick}
                                   tof='false'
                                 />{' '}
