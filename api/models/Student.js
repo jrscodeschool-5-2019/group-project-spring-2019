@@ -1,28 +1,31 @@
 const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+const bcrypt = require('bcryptjs');
+mongoose.promise = Promise;
 
-const StudentSchema = mongoose.Schema({
+const StudentSchema = new mongoose.Schema({
   username: {
     type: String,
+    required: true,
     unique: true,
+  },
+  password: {
+    type: String,
     required: true,
   },
   email: {
     type: String,
     unique: true,
-    required: true,
-  },
-  passwordHash: {
-    type: String,
-    required: true,
+    require: true,
   },
   name: {
     first: {
       type: String,
-      require: true,
+      required: true,
     },
     last: {
       type: String,
-      require: true,
+      required: true,
     },
   },
   img: {
@@ -35,12 +38,15 @@ const StudentSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  employmentStatus: {
+  employer: {
     type: String,
   },
   seekingEmployment: {
     type: Boolean,
     default: false,
+  },
+  location: {
+    type: String,
   },
   bio: {
     type: String,
@@ -55,10 +61,38 @@ const StudentSchema = mongoose.Schema({
     other: {
       type: String,
     },
-    finalProject: {
-      type: String,
-    },
   },
+  finalProject: {
+    type: String,
+  },
+});
+
+// add a bunch of important methods to StudentSchema
+// to enable user authentication
+// MAYBE DELETE THIS?
+// StudentSchema.plugin(passportLocalMongoose);
+
+// Define schema methods
+StudentSchema.methods = {
+  checkPassword: function(inputPassword) {
+    return bcrypt.compareSync(inputPassword, this.password);
+  },
+  hashPassword: plainTextPassword => {
+    return bcrypt.hashSync(plainTextPassword, 10);
+  },
+};
+
+// Define pre hooks for the save method
+StudentSchema.pre('save', function(next) {
+  if (!this.password) {
+    console.log('models/Student.js =======NO PASSWORD PROVIDED=======');
+    next();
+  } else {
+    console.log('models/Student.js hashPassword in pre save');
+
+    this.password = this.hashPassword(this.password);
+    next();
+  }
 });
 
 const Student = mongoose.model('student', StudentSchema);
