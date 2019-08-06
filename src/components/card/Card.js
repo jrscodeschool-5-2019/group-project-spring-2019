@@ -18,21 +18,27 @@ const Card = ({ user }) => {
         </strong>
       </h1>
       <h3>{user.employmentStatus}</h3>
-      <br />
-      <p>{user.bio}</p>
-      <br />
-      <h3>
+      {/* <br />
+      <p>{user.bio}</p> */}
+      {/* <br /> */}
+      {/* <h3>
         <a href={user.contactLinks.gitHub}>Github</a> |
         <a href={user.contactLinks.linkedIn}> LinkedIn </a> |
         <a href={user.contactLinks.other}> Other</a>
-      </h3>
+      </h3> */}
       <br />
       <h3>
         <span className='label'>Graduation Year:</span> {user.gradYear}
       </h3>
-      <p>
+      <br />
+      <h3>
+        <span className='label'>Current Location:</span>
+        {/* {user.location.city}, {user.location.state} */} Location to be added
+        here later, gater
+      </h3>
+      {/* <p>
         <span className='label'>Final Project:</span> {user.finalProject}
-      </p>
+      </p> */}
     </div>
   )
 }
