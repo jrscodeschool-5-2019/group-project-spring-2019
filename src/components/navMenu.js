@@ -37,9 +37,16 @@ function NavMenu() {
               <a className='navbar-item is-active' href='../'>
                 Home
               </a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
+              {/* Needs to be updated with validation */}
+              <a className='navbar-item' href='../student-login'>
+                Login
+              </a>
+              <a className='navbar-item' href='../registration'>
+                Register
+              </a>
+              <a className='navbar-item' href='../student-view'>
+                View Students
+              </a>
             </div>
           </div>
         </div>

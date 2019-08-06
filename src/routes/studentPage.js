@@ -8,18 +8,15 @@ import SideBar from '../components/sidebar/Sidebar'
 function Page() {
   const [users, setUsers] = useState([])
   const [search, setSearch] = useState('')
-  // remove this const [ v, setResults] = useState([])
+
   useEffect(() => {
     fetch('http://localhost:8000/directory')
       .then(res => res.json())
       .then(data => setUsers(data.data))
-    //.then(user => setUsers())
   }, [])
+
   const handleChange = e => {
     setSearch(e.target.value)
-    console.log(e.target.value)
-    console.log(users)
-    console.log(filteredUsers)
   }
 
   const filteredUsers = users.filter(
@@ -27,6 +24,7 @@ function Page() {
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
       user.name.last.toLowerCase().includes(search.toLowerCase())
   )
+
   return (
     // Navagation section and logo
 
@@ -49,7 +47,7 @@ function Page() {
                     <SearchDirectory handleChange={handleChange} />
                   </div>
                   <div className='control'>
-                    <a className='button is-info'>Search</a>
+                    <button className='button is-info'>Search</button>
                   </div>
                 </div>
               </div>
