@@ -6,6 +6,7 @@ import NavMenu from '../components/navMenu';
 import SideBar from '../components/sidebar/Sidebar';
 
 function Page() {
+<<<<<<< HEAD
   //may need to write state logic for the toggles
 
   const { filter, setFilter } = useState({ employed: true, current: true });
@@ -25,16 +26,34 @@ function Page() {
     console.log(users);
     console.log(filteredUsers);
   };
+=======
+  const [users, setUsers] = useState([])
+  const [search, setSearch] = useState('')
+
+  useEffect(() => {
+    fetch('http://localhost:8000/directory')
+      .then(res => res.json())
+      .then(data => setUsers(data.data))
+  }, [])
+
+  const handleChange = e => {
+    setSearch(e.target.value)
+  }
+>>>>>>> b9d00d000d32554e18ed7912b483f7285c94acbc
 
   const filteredUsers = users.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
       user.name.last.toLowerCase().includes(search.toLowerCase())
+<<<<<<< HEAD
   );
 
   const inputChange = e => {
     console.log(e.target.id);
   };
+=======
+  )
+>>>>>>> b9d00d000d32554e18ed7912b483f7285c94acbc
 
   return (
     // Navagation section and logo
@@ -58,7 +77,7 @@ function Page() {
                     <SearchDirectory handleChange={handleChange} />
                   </div>
                   <div className='control'>
-                    <a className='button is-info'>Search</a>
+                    <button className='button is-info'>Search</button>
                   </div>
                 </div>
                 <label className='checkbox'>
