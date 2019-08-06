@@ -43,7 +43,7 @@ function Page() {
     <div>
       <NavMenu />
       <div className='columns'>
-        <SideBar />I changed a branch of a branch!
+        <SideBar />
         <div className='column is-9'>
           {/* end of the nav section , search section below */}
           <div className='container'>
