@@ -10,21 +10,35 @@ import './card-styles.css'
 const Card = ({ user }) => {
   return (
     <div className='box card'>
-      <img alt={`${user._id} img`} src={user.img} />
+      <img className='avatar' alt={`${user._id} img`} src={user.img} />
+      <br />
       <h1>
         <strong>
           {user.name.first} {user.name.last}
         </strong>
       </h1>
-      <h3>{user.gradYear}</h3>
       <h3>{user.employmentStatus}</h3>
+      {/* <br />
+      <p>{user.bio}</p> */}
+      {/* <br /> */}
+      {/* <h3>
+        <a href={user.contactLinks.gitHub}>Github</a> |
+        <a href={user.contactLinks.linkedIn}> LinkedIn </a> |
+        <a href={user.contactLinks.other}> Other</a>
+      </h3> */}
+      <br />
       <h3>
-        <a href={user.contactLinks.gitHub}>Github </a>
-        <a href={user.contactLinks.linkedIn}>LinkedIn </a>
-        <a href={user.contactLinks.other}>Other</a>
+        <span className='label'>Graduation Year:</span> {user.gradYear}
       </h3>
-      <p>{user.bio}</p>
-      <p>Final Project: {user.finalProject}</p>
+      <br />
+      <h3>
+        <span className='label'>Current Location:</span>
+        {/* {user.location.city}, {user.location.state} */} Location to be added
+        here later, gater
+      </h3>
+      {/* <p>
+        <span className='label'>Final Project:</span> {user.finalProject}
+      </p> */}
     </div>
   )
 }

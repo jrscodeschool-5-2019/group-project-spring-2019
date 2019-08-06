@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import LandingPage from './landingPage';
-import Registration from './registration-form';
-import Login from './login-page';
-import Page from './studentPage';
 import {Router} from '@reach/router';
+import LandingPage from './routes/landingPage';
+import Registration from './routes/registration-form';
+import Login from './routes/login-page';
+import Page from './routes/studentPage';
 
 function App() {
   const [user, setUser] = useState({loggedIn: false, username: ''});

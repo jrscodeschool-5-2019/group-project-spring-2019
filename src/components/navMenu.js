@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import Logo from './JRS_Coding_School_logo.png';
+import React, {useState} from 'react';
+import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
-import CardList from './components/card-list/CardList';
 
 function NavMenu() {
   const [isActive, setIsActive] = useState('');
@@ -60,9 +59,16 @@ function NavMenu() {
               <a className='navbar-item is-active' href='../'>
                 Home
               </a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
-              <a className='navbar-item'>something</a>
+              {/* Needs to be updated with validation */}
+              <a className='navbar-item' href='../student-login'>
+                Login
+              </a>
+              <a className='navbar-item' href='../registration'>
+                Register
+              </a>
+              <a className='navbar-item' href='../student-view'>
+                View Students
+              </a>
             </div>
           </div>
         </div>
