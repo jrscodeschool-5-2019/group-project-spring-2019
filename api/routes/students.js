@@ -55,6 +55,36 @@ router.post('/registration', async (req, res) => {
   });
 });
 
+// Student log in
+router.post(
+  '/student-login',
+  function(req, res, next) {
+    console.log('routes/user.js, login, req.body: ');
+    console.log(req.body);
+    next();
+  },
+  passport.authenticate('local'),
+  (req, res) => {
+    console.log('logged in', req.user);
+    const userInfo = {
+      username: req.user.username,
+      name: req.user.name.first,
+    };
+    res.status(200).send(userInfo);
+  }
+);
+
+// get user
+// router.get('/', (req, res, next) => {
+//   console.log('===== user!!======');
+//   console.log(req.user);
+//   if (req.user) {
+//     res.json({user: req.user});
+//   } else {
+//     res.json({user: null});
+//   }
+// });
+
 // /directory/ (Directory landing page)
 router.route('/').get(async (req, res) => {
   await Student.find({}).then(students => res.json({status: 'ok', data: students}));
