@@ -7,7 +7,7 @@ function LandingPage() {
   return (
     <span>
       <div className='has-text-centered'>
-        <img src={Logo} />
+        <img src={Logo} alt='JRS Logo' />
       </div>
       <span className='columns is-flex is-centered'>
         <div

@@ -9,7 +9,7 @@ class Registration extends Component {
       <span className='reg-page box' style={{ backgroundColor: 'honeydew' }}>
         <div className='has-text-centered'>
           <Link to='/'>
-            <img src={Logo} />
+            <img src={Logo} alt='JRS logo' />
           </Link>
         </div>
         <form className='columns has-text-centered is-half'>
