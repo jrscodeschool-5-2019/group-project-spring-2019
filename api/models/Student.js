@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const bcrypt = require('bcryptjs');
+mongoose.promise = Promise;
 
 const StudentSchema = new mongoose.Schema({
   username: {
@@ -69,7 +70,7 @@ const StudentSchema = new mongoose.Schema({
 // add a bunch of important methods to StudentSchema
 // to enable user authentication
 // MAYBE DELETE THIS?
-StudentSchema.plugin(passportLocalMongoose);
+// StudentSchema.plugin(passportLocalMongoose);
 
 // Define schema methods
 StudentSchema.methods = {

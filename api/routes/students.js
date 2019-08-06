@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router({mergeParams: true});
+const router = express.Router();
 const passport = require('passport');
 const Student = require('../models/Student');
 
@@ -55,38 +55,51 @@ router.post('/registration', async (req, res) => {
   });
 });
 
-// Student log in
-router.post(
-  '/student-login',
-  function(req, res, next) {
-    console.log('routes/user.js, login, req.body: ');
-    console.log(req.body);
-    next();
-  },
-  passport.authenticate('local'),
-  (req, res) => {
-    console.log('logged in', req.user);
-    const userInfo = {
-      username: req.user.username,
-      name: req.user.name.first,
-    };
-    res.status(200).send(userInfo);
-  }
-);
+router.post('/student-login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    req.login(user, function(err) {
+      res.status(200).send(JSON.stringify(user));
+    });
+  })(req, res, next);
+});
 
-// get user
-// router.get('/', (req, res, next) => {
-//   console.log('===== user!!======');
-//   console.log(req.user);
-//   if (req.user) {
-//     res.json({user: req.user});
-//   } else {
-//     res.json({user: null});
-//   }
+// Student log in
+// router.post('/login', passport.authenticate('local'), (req, res) => {
+//   console.log('logged in', req.user);
+//   const userInfo = {
+//     username: req.user.username,
+//   };
+//   res.status(200).send(userInfo);
 // });
 
+// get user - not working
+router.get('/user', (req, res, next) => {
+  console.log('===== user!!======');
+  console.log(req.user);
+  if (req.user) {
+    res.json({user: req.user});
+  } else {
+    res.json({user: null});
+  }
+});
+
+// log out
+router.post('/logout', (req, res) => {
+  if (req.user) {
+    req.logout();
+    res.send({msg: 'logging out'});
+  } else {
+    res.send({msg: 'no user to log out'});
+  }
+});
+
 // /directory/ (Directory landing page)
-router.route('/').get(async (req, res) => {
+router.route('/directory').get(async (req, res) => {
+  await Student.find({}).then(students => res.json({status: 'ok', data: students}));
+});
+
+// /directory/ (Directory landing page)
+router.route('/student-view').get(async (req, res) => {
   await Student.find({}).then(students => res.json({status: 'ok', data: students}));
 });
 

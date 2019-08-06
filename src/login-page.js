@@ -7,7 +7,6 @@ const Login = props => {
   const [state, setState] = useState({
     username: '',
     password: '',
-    // redirectTo: null,
   });
 
   const handleChange = event => {
@@ -20,7 +19,6 @@ const Login = props => {
   const handleSubmit = event => {
     event.preventDefault();
     console.log('handleSubmit');
-    console.log(state);
 
     fetch('http://localhost:8000/student-login', {
       method: 'POST',
@@ -41,11 +39,10 @@ const Login = props => {
         // update App.js state
         props.updateUser({
           loggedIn: true,
-          name: res.name,
           username: res.username,
         });
       })
-      // .then(res => navigate('/directory'))
+      .then(res => navigate('/student-view'))
       .catch(error => {
         console.log('login error: ');
         console.log(error);
