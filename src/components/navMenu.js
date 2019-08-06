@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
+import {Link} from '@reach/router';
 
-function NavMenu() {
+function NavMenu(props) {
   const [isActive, setIsActive] = useState('');
 
   // update `is-active` state for use with dropdown menu on mobile devices
@@ -17,16 +18,15 @@ function NavMenu() {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
     })
-      .then(response => console.log(response))
-      // .then(response => {
-      //     console.log(response)
-      //     if (response.status === 200) {
-      //       this.props.updateUser({
-      //         loggedIn: false,
-      //         username: null
-      //       })
-      //     }
-      //   })
+      .then(response => {
+        console.log(response);
+        if (response.status === 200) {
+          props.updateUser({
+            loggedIn: false,
+            username: '',
+          });
+        }
+      })
       .catch(error => {
         console.log('Logout error');
       });
@@ -56,19 +56,32 @@ function NavMenu() {
           </div>
           <div id='navbarMenu' className={`navbar-menu  ${isActive}`}>
             <div className='navbar-end'>
-              <a className='navbar-item is-active' href='../'>
+              <Link to='/' user={props.user} className='navbar-item is-active'>
                 Home
-              </a>
-              {/* Needs to be updated with validation */}
-              <a className='navbar-item' href='../student-login'>
-                Login
-              </a>
-              <a className='navbar-item' href='../registration'>
-                Register
-              </a>
-              <a className='navbar-item' href='../student-view'>
+              </Link>
+              {!props.user.loggedIn && (
+                <Link to='/student-login' className='navbar-item'>
+                  Login
+                </Link>
+              )}
+              {props.user.loggedIn && (
+                <Link to='/student-view' className='navbar-item' onClick={logout}>
+                  Logout
+                </Link>
+              )}
+              {!props.user.loggedIn && (
+                <Link to='/registration' className='navbar-item'>
+                  Register
+                </Link>
+              )}
+              <Link to='/student-view' user={props.user} className='navbar-item'>
                 View Students
-              </a>
+              </Link>
+              {props.user.loggedIn && (
+                <Link to='/profile' user={props.user} className='navbar-item'>
+                  Profile
+                </Link>
+              )}
             </div>
           </div>
         </div>

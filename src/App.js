@@ -4,6 +4,8 @@ import LandingPage from './routes/landingPage';
 import Registration from './routes/registration-form';
 import Login from './routes/login-page';
 import Page from './routes/studentPage';
+import Profile from './routes/profilePage';
+import NavMenu from './components/navMenu';
 
 function App() {
   const [user, setUser] = useState({loggedIn: false, username: ''});
@@ -41,11 +43,14 @@ function App() {
 
   return (
     <div>
+      <NavMenu user={user} updateUser={updateUser} />
+
       <Router>
         <LandingPage path='/' />
         <Registration path='/registration' />
         <Login path='/student-login' updateUser={updateUser} />
         <Page path='/student-view' user={user} updateUser={updateUser} />
+        <Profile path='/profile' />
       </Router>
     </div>
   );

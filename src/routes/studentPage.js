@@ -5,7 +5,7 @@ import SearchDirectory from '../components/search-directory/SearchDirectory';
 import NavMenu from '../components/navMenu';
 import SideBar from '../components/sidebar/Sidebar';
 
-function Page() {
+function Page(props) {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState('');
 
@@ -29,7 +29,8 @@ function Page() {
     // Navagation section and logo
 
     <div>
-      <NavMenu />
+      {props.user.loggedIn && <p>{props.user.username}</p>}
+      {/* <NavMenu /> */}
       <div className='columns'>
         <SideBar />
         <div className='column is-9'>
