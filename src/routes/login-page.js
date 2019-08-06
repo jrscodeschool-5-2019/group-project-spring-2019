@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {navigate, Link} from '@reach/router';
-import Logo from './JRS_Coding_School_logo.png';
+import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
 
 const Login = props => {
@@ -54,7 +54,7 @@ const Login = props => {
       <div className='has-text-centered'>
         <div>
           <Link to='/'>
-            <img src={Logo} />
+            <img src={Logo} alt='JRS Logo' />
           </Link>
         </div>
         <form className='columns'>
@@ -82,9 +82,9 @@ const Login = props => {
             </div>
             <div>
               <button
-                className='button is-rounded'
                 type='submit'
-                onClick={handleSubmit}>
+                onClick={handleSubmit}
+                className='button is-rounded'>
                 Login
               </button>
             </div>

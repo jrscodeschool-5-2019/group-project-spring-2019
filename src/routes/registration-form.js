@@ -1,7 +1,7 @@
 import React, {useReducer} from 'react';
 import {Link, navigate} from '@reach/router';
 import {merge} from 'ramda';
-import Logo from './JRS_Coding_School_logo.png';
+import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
 
 const initialState = {
@@ -29,7 +29,7 @@ function reducer(state, {type, payload}) {
   return state;
 }
 
-export default function Registration(props) {
+const Registration = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleSubmit = event => {
@@ -60,7 +60,7 @@ export default function Registration(props) {
     <span className='reg-page box' style={{backgroundColor: 'honeydew'}}>
       <div className='has-text-centered'>
         <Link to='/'>
-          <img src={Logo} />
+          <img src={Logo} alt='JRS logo' />
         </Link>
       </div>
       <form onSubmit={handleSubmit} className='columns has-text-centered is-half'>
@@ -126,7 +126,6 @@ export default function Registration(props) {
               placeholder='Username'
             />
           </div>
-
           <div className='reg-name-input'>
             <input
               className='form-input'
@@ -153,6 +152,6 @@ export default function Registration(props) {
       </form>
     </span>
   );
-}
+};
 
-// export default Registration;
+export default Registration;
