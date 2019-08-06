@@ -22,12 +22,24 @@ function Page() {
   const filteredUsers = users.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
-      user.name.last.toLowerCase().includes(search.toLowerCase())
+      user.name.last.toLowerCase().includes(search.toLowerCase()) +
+      user.employmentStatus.toLowerCase().includes(search.toLowerCase())
+    // +
+    // user.location.city.toLowerCase().includes(search.toLowerCase()) +
+    // user.location.state.toLowerCase().includes(search.toLowerCase())
   )
 
-  return (
-    // Navagation section and logo
+  const dropdownTrigger = e => {
+    const triggerClass = e.target.parentNode.parentNode.parentNode
+    triggerClass.classList.toggle('is-active')
+  }
 
+  const checkboxClick = e => {
+    console.log(e.target.id)
+  }
+
+  return (
+    // Navigation section and logo
     <div>
       <NavMenu />
       <div className='columns'>
@@ -47,7 +59,83 @@ function Page() {
                     <SearchDirectory handleChange={handleChange} />
                   </div>
                   <div className='control'>
-                    <button className='button is-info'>Search</button>
+                    <div className='filterer'>
+                      <div className='dropdown is-right'>
+                        <div className='dropdown-trigger'>
+                          <button
+                            className='button'
+                            aria-haspopup='true'
+                            aria-controls='dropdown-menu3'
+                            onClick={dropdownTrigger}
+                          >
+                            <span>Filter</span>
+                            <span className='icon is-small'>
+                              <i
+                                className='fas fa-angle-down'
+                                aria-hidden='true'
+                              />
+                            </span>
+                          </button>
+                        </div>
+                        <div
+                          className='dropdown-menu'
+                          id='dropdown-menu'
+                          role='menu'
+                        >
+                          <div className='dropdown-content'>
+                            <div className='dropdown-item'>
+                              Employment Status
+                            </div>
+                            <div className='dropdown-item'>
+                              <label className='checkbox'>
+                                <input
+                                  type='checkbox'
+                                  id='seekingEmploymentFalse'
+                                  onClick={checkboxClick}
+                                />{' '}
+                                Happily Employed
+                              </label>
+                            </div>
+                            <div className='dropdown-item'>
+                              <label className='checkbox'>
+                                <input
+                                  type='checkbox'
+                                  id='seekingEmploymentTrue'
+                                  onClick={checkboxClick}
+                                />{' '}
+                                Seeking Employment
+                              </label>
+                            </div>
+                            <hr className='dropdown-divider' />
+                            <div className='dropdown-item'>
+                              Graduation Status
+                            </div>
+                            <div className='dropdown-item'>
+                              <label className='checkbox'>
+                                <input
+                                  type='checkbox'
+                                  id='currentStudent'
+                                  onClick={checkboxClick}
+                                  tof='true'
+                                />{' '}
+                                Current Students
+                              </label>
+                            </div>
+                            <div className='dropdown-item'>
+                              <label className='checkbox'>
+                                <input
+                                  type='checkbox'
+                                  id='currentStudent'
+                                  onClick={checkboxClick}
+                                  tof='false'
+                                />{' '}
+                                Alumni
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
