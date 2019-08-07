@@ -7,9 +7,10 @@ const Filter = ({ users, setFilteredCards }) => {
     const current = document.getElementById('current')
     const alumni = document.getElementById('alumni')
     if (employed.checked) {
+      seeking.disabled = true
       if (current.checked) {
-        // disable seeking and alumni
-        // may also have to put disable = false for others. try it without and see!
+        alumni.disabled = true
+        current.disabled = false
         setFilteredCards(
           users.filter(
             user =>
@@ -17,7 +18,8 @@ const Filter = ({ users, setFilteredCards }) => {
           )
         )
       } else if (alumni.checked) {
-        //disable seeking and current
+        current.disabled = true
+        alumni.disabled = false
         setFilteredCards(
           users.filter(
             user =>
@@ -25,12 +27,15 @@ const Filter = ({ users, setFilteredCards }) => {
           )
         )
       } else {
-        //disable seeking
+        current.disabled = false
+        alumni.disabled = false
         setFilteredCards(users.filter(user => user.seekingEmployment === false))
       }
     } else if (seeking.checked) {
+      employed.disabled = true
       if (current.checked) {
-        //disable employed and alumni
+        alumni.disabled = true
+        current.disabled = false
         setFilteredCards(
           users.filter(
             user =>
@@ -38,7 +43,8 @@ const Filter = ({ users, setFilteredCards }) => {
           )
         )
       } else if (alumni.checked) {
-        //disable employed and current
+        current.disabled = true
+        alumni.disabled = false
         setFilteredCards(
           users.filter(
             user =>
@@ -46,17 +52,25 @@ const Filter = ({ users, setFilteredCards }) => {
           )
         )
       } else {
-        //disable employed
+        current.disabled = false
+        alumni.disabled = false
         setFilteredCards(users.filter(user => user.seekingEmployment === true))
       }
     } else if (current.checked) {
-      //disable alumni
+      alumni.disabled = true
+      employed.disabled = false
+      seeking.disabled = false
       setFilteredCards(users.filter(user => user.currentStudent === true))
     } else if (alumni.checked) {
-      //disable current
+      current.disabled = true
+      employed.disabled = false
+      seeking.disabled = false
       setFilteredCards(users.filter(user => user.currentStudent === false))
     } else {
-      //nothing disabled
+      current.disabled = false
+      alumni.disabled = false
+      employed.disabled = false
+      seeking.disabled = false
       setFilteredCards(users)
     }
   }

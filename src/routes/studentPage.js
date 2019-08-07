@@ -5,7 +5,7 @@ import SearchDirectory from '../components/search-directory/SearchDirectory'
 import SideBar from '../components/sidebar/Sidebar'
 import Filter from '../components/filter/Filter'
 
-const Page = props => {
+const Page = () => {
   const [users, setUsers] = useState([])
   const [filteredCards, setFilteredCards] = useState([])
   const [search, setSearch] = useState('')
@@ -29,22 +29,15 @@ const Page = props => {
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
       user.employmentStatus.toLowerCase().includes(search.toLowerCase())
     // +
-    // user.location.city.toLowerCase().includes(search.toLowerCase()) +
-    // user.location.state.toLowerCase().includes(search.toLowerCase())
+    // user.location.city.toLowerCase().includes(search.toLowerCase())
   )
 
   return (
-    // Navigation section and logo
     <div>
       <div className='columns'>
         <SideBar />
         <div className='column is-9'>
           <div className='container'>
-            <div id='flow'>
-              <span className='flow-1' />
-              <span className='flow-2' />
-              <span className='flow-3' />
-            </div>
             <div className='section'>
               <div className='box'>
                 <div className='field has-addons'>
@@ -60,10 +53,6 @@ const Page = props => {
           <CardList users={filteredUsers} />
         </div>
       </div>
-
-      {/* End of the search */}
-
-      {/* columns for student cards */}
     </div>
   )
 }
