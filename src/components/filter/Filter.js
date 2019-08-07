@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Filter = ({ users, setFilteredCards }) => {
-  const checkboxClick = e => {
+  const checkboxClick = () => {
     const employed = document.getElementById('employed')
     const seeking = document.getElementById('seeking')
     const current = document.getElementById('current')
