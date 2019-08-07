@@ -3,7 +3,7 @@
     {
       "img": "https://lafeber.com/pet-birds/wp-content/uploads/2018/06/Cockatiel-2.jpg",
       "gradYear": "2017",
-      "employmentStatus": "Bird Tech, Co.",
+      "employer": "Bird Tech, Co.",
       "bio": "Freelancer. Loves React and birdwatching.",
       "contactLinks": {
         "gitHub": "www.github.com/birdwatcher",
@@ -19,12 +19,13 @@
       "seekingEmployment": false,
       "username": "birdsarecool",
       "email": "iheartbirds@gmail.com",
-      "passwordHash": "birdsarethebest"
+      "password": "birdsarethebest",
+      "location": "Charleston, SC"
     },
     {
       "img": "https://res.cloudinary.com/jerrick/image/upload/f_auto,fl_progressive,q_auto,c_fit,w_1560/ts3tmoxwwjpqjaamilzi",
       "gradYear": "2016",
-      "employmentStatus": "Snakes R Us",
+      "employer": "Snakes R Us",
       "bio": "Mostly code in Python",
       "contactLinks": {
         "gitHub": "www.github.com/monty",
@@ -40,12 +41,13 @@
       "seekingEmployment": false,
       "username": "snakes4life",
       "email": "snakes4life@gmail.com",
-      "passwordHash": "ilovesnakes"
+      "password": "ilovesnakes",
+      "location": "Mt Pleasant, SC"
     },
     {
       "img": "https://bloximages.chicago2.vip.townnews.com/presspubs.com/content/tncms/assets/v3/editorial/7/ca/7ca7b3bc-4d98-11e8-ac99-d78e026f8138/5ae8fa41772c8.image.jpg?resize=620%2C496",
       "gradYear": "2018",
-      "employmentStatus": "Unemployed",
+      "employer": "Unemployed",
       "bio": "JavaScript, React, Mongo, and PHP",
       "contactLinks": {
         "gitHub": "www.github.com/sam",
@@ -61,12 +63,13 @@
       "seekingEmployment": true,
       "username": "possumsFTW",
       "email": "possumsFTW@gmail.com",
-      "passwordHash": "possumsaredope"
+      "password": "possumsaredope",
+      "location": "Charleston, SC"
     },
     {
       "img": "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555274413/shape/mentalfloss/istock-498886489.jpg",
       "gradYear": "2019",
-      "employmentStatus": "Unemployed",
+      "employer": "Unemployed",
       "bio": "Full stack developer seeking employment in the Charleston area",
       "contactLinks": {
         "gitHub": "www.github.com/gretchen",
@@ -82,12 +85,13 @@
       "seekingEmployment": true,
       "username": "honeybadgersarethebest",
       "email": "honeybadgersarethebest@gmail.com",
-      "passwordHash": "ihearthoneybadger"
+      "password": "ihearthoneybadger",
+      "location": "Oklahoma City, OK"
     },
     {
       "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/440px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg",
       "gradYear": "2019",
-      "employmentStatus": "Unemployed",
+      "employer": "Unemployed",
       "bio": "Frontend Wizard, loves React",
       "contactLinks": {
         "gitHub": "www.github.com/otto",
@@ -103,7 +107,8 @@
       "seekingEmployment": true,
       "username": "ottersrule",
       "email": "ottersrule@gmail.com",
-      "passwordHash": "ottersarecute"
+      "password": "ottersarecute",
+      "location": "Australia"
     }
   ]
 }
