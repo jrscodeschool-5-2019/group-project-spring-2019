@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import 'bulma/css/bulma.css'
-import CardList from '../components/card-list/CardList'
-import SearchDirectory from '../components/search-directory/SearchDirectory'
-import NavMenu from '../components/navMenu'
-import SideBar from '../components/sidebar/Sidebar'
+import React, {useEffect, useState} from 'react';
+import 'bulma/css/bulma.css';
+import CardList from '../components/card-list/CardList';
+import SearchDirectory from '../components/search-directory/SearchDirectory';
+import SideBar from '../components/sidebar/Sidebar';
 
-function Page() {
-  const [users, setUsers] = useState([])
-  const [search, setSearch] = useState('')
+const Page = props => {
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8000/directory')
+    fetch('http://localhost:8000/student-view')
       .then(res => res.json())
-      .then(data => setUsers(data.data))
-  }, [])
+      .then(data => setUsers(data.data));
+  }, []);
 
   const handleChange = e => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
 
   const filteredUsers = users.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
+<<<<<<< HEAD
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
       user.employmentStatus.toLowerCase().includes(search.toLowerCase())
     // +
@@ -40,12 +40,16 @@ function Page() {
 
   return (
     // Navigation section and logo
+=======
+      user.name.last.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+>>>>>>> master
     <div>
-      <NavMenu />
       <div className='columns'>
         <SideBar />
         <div className='column is-9'>
-          {/* end of the nav section , search section below */}
           <div className='container'>
             <div id='flow'>
               <span className='flow-1' />
@@ -149,7 +153,7 @@ function Page() {
 
       {/* columns for student cards */}
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
