@@ -27,9 +27,8 @@ const Page = () => {
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
-      user.employmentStatus.toLowerCase().includes(search.toLowerCase())
-    // +
-    // user.location.city.toLowerCase().includes(search.toLowerCase())
+      user.employer.toLowerCase().includes(search.toLowerCase()) +
+      user.location.toLowerCase().includes(search.toLowerCase())
   )
 
   return (
