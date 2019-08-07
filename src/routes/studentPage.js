@@ -1,27 +1,26 @@
-import React, {useEffect, useState} from 'react';
-import 'bulma/css/bulma.css';
-import CardList from '../components/card-list/CardList';
-import SearchDirectory from '../components/search-directory/SearchDirectory';
-import SideBar from '../components/sidebar/Sidebar';
+import React, { useEffect, useState } from 'react'
+import 'bulma/css/bulma.css'
+import CardList from '../components/card-list/CardList'
+import SearchDirectory from '../components/search-directory/SearchDirectory'
+import SideBar from '../components/sidebar/Sidebar'
 
 const Page = props => {
-  const [users, setUsers] = useState([]);
-  const [search, setSearch] = useState('');
+  const [users, setUsers] = useState([])
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:8000/student-view')
       .then(res => res.json())
-      .then(data => setUsers(data.data));
-  }, []);
+      .then(data => setUsers(data.data))
+  }, [])
 
   const handleChange = e => {
-    setSearch(e.target.value);
-  };
+    setSearch(e.target.value)
+  }
 
   const filteredUsers = users.filter(
     user =>
       user.name.first.toLowerCase().includes(search.toLowerCase()) +
-<<<<<<< HEAD
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
       user.employmentStatus.toLowerCase().includes(search.toLowerCase())
     // +
@@ -40,12 +39,6 @@ const Page = props => {
 
   return (
     // Navigation section and logo
-=======
-      user.name.last.toLowerCase().includes(search.toLowerCase())
-  );
-
-  return (
->>>>>>> master
     <div>
       <div className='columns'>
         <SideBar />
@@ -153,7 +146,7 @@ const Page = props => {
 
       {/* columns for student cards */}
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
