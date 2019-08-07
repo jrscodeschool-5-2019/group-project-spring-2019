@@ -55,22 +55,52 @@ router.post('/registration', async (req, res) => {
   });
 });
 
-router.post('/student-login', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    req.login(user, function(err) {
-      res.status(200).send(JSON.stringify(user));
-    });
-  })(req, res, next);
+// POSTMAN
+router.post('/add-students', async (req, res) => {
+  const {username, email} = req.body;
+  // ADD VALIDATION
+  Student.findOne({email: email}, (err, student) => {
+    if (err) {
+      console.log('students.js post error: ', err);
+    } else if (student) {
+      res.json({
+        error: 'Sorry, that email is already in use',
+      });
+    } else
+      Student.findOne({username: username}, (err, student) => {
+        if (err) {
+          console.log('students.js post error: ', err);
+        } else if (student) {
+          res.json({
+            error: 'Sorry, that username is already in use',
+          });
+        } else {
+          const newStudent = new Student(req.body);
+          newStudent.save((err, savedStudent) => {
+            if (err) return res.json(err);
+            res.json(savedStudent);
+          });
+        }
+      });
+  });
 });
 
-// Student log in
-// router.post('/login', passport.authenticate('local'), (req, res) => {
-//   console.log('logged in', req.user);
-//   const userInfo = {
-//     username: req.user.username,
-//   };
-//   res.status(200).send(userInfo);
+// router.post('/student-login', function(req, res, next) {
+//   passport.authenticate('local', function(err, user, info) {
+//     req.login(user, function(err) {
+//       res.status(200).send(JSON.stringify(user));
+//     });
+//   })(req, res, next);
 // });
+
+// Student log in
+router.post('/student-login', passport.authenticate('local'), (req, res) => {
+  console.log('logged in', req.user);
+  const userInfo = {
+    username: req.user.username,
+  };
+  res.status(200).send(userInfo);
+});
 
 // get user - not working
 router.get('/user', (req, res, next) => {

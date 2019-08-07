@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import {Link, navigate} from '@reach/router';
 import {merge} from 'ramda';
 import Logo from '../img/JRS_Coding_School_logo.png';
@@ -31,6 +31,20 @@ function reducer(state, {type, payload}) {
 
 const Registration = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isEnabled, setIsEnabled] = useState(false);
+
+  document.onload = document.title = 'Student/Alumni Registration';
+
+  const runValidation = () => {
+    state.name.first.length > 0 &&
+    state.email.includes('@') &&
+    state.email.includes('.com') &&
+    state.email.length > 0 &&
+    state.password.length >= 8 &&
+    state.username.length > 0
+      ? setIsEnabled(true)
+      : setIsEnabled(false);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -56,6 +70,18 @@ const Registration = props => {
       });
   };
 
+  const addDangerToEmail = () => {
+    return state.email.includes('@') && state.email.includes('.com')
+      ? ''
+      : state.email.length > 0
+      ? 'is-danger'
+      : '';
+  };
+
+  const addDangerToPassword = () => {
+    return state.password.length > 0 && state.password.length < 8 ? 'is-danger' : '';
+  };
+
   return (
     <span className='reg-page box' style={{backgroundColor: 'honeydew'}}>
       <div className='has-text-centered'>
@@ -63,12 +89,17 @@ const Registration = props => {
           <img src={Logo} alt='JRS logo' />
         </Link>
       </div>
-      <form onSubmit={handleSubmit} className='columns has-text-centered is-half'>
+      <form
+        onChange={runValidation}
+        onBlur={runValidation}
+        onSubmit={handleSubmit}
+        className='columns has-text-centered is-half'>
         <div className='column'>
-          <h1>Student Registration</h1>
+          <h1>Student/Alumni Registration</h1>
           <div className='reg-name-input'>
             <input
-              className='form-input'
+              id='first-name-input'
+              className='form-input input'
               type='text'
               name='first_name'
               value={state.name.first}
@@ -83,7 +114,7 @@ const Registration = props => {
           </div>
           <div className='reg-name-input'>
             <input
-              className='form-input'
+              className='form-input input'
               type='text'
               name='last_name'
               value={state.name.last}
@@ -98,22 +129,23 @@ const Registration = props => {
           </div>
           <div className='reg-name-input'>
             <input
-              className='form-input'
+              id='email-input'
+              className={`form-input input ${addDangerToEmail()}`}
               type='text'
               name='email'
               value={state.email}
-              onChange={e =>
+              onChange={e => {
                 dispatch({
                   type: 'SET_EMAIL',
                   payload: e.target.value,
-                })
-              }
+                });
+              }}
               placeholder='Email Address'
             />
           </div>
           <div className='reg-name-input'>
             <input
-              className='form-input'
+              className='form-input input'
               type='text'
               name='username'
               value={state.username}
@@ -128,7 +160,8 @@ const Registration = props => {
           </div>
           <div className='reg-name-input'>
             <input
-              className='form-input'
+              id='password-input'
+              className={`form-input input ${addDangerToPassword()}`}
               type='password'
               name='password'
               value={state.password}
@@ -138,11 +171,12 @@ const Registration = props => {
                   payload: e.target.value,
                 })
               }
-              placeholder='Password'
+              placeholder='Password (at least 8 characters)'
             />
           </div>
           <div>
             <button
+              disabled={!isEnabled}
               type='submit'
               className='button is-centered is-rounded reg-button'>
               Submit

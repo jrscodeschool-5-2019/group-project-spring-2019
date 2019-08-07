@@ -34,6 +34,7 @@ const Page = () => {
   return (
     <div>
       <div className='columns'>
+        {/* search bar */}
         <SideBar />
         <div className='column is-9'>
           <div className='container'>
@@ -49,6 +50,7 @@ const Page = () => {
               </div>
             </div>
           </div>
+          {/* Cards called in here */}
           <CardList users={filteredUsers} />
         </div>
       </div>
