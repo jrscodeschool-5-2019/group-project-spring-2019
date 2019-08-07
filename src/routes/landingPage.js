@@ -1,9 +1,11 @@
-import React from 'react'
-import Logo from '../img/JRS_Coding_School_logo.png'
-import { Link } from '@reach/router'
-import 'bulma/css/bulma.css'
+import React from 'react';
+import Logo from '../img/JRS_Coding_School_logo.png';
+import {Link} from '@reach/router';
+import 'bulma/css/bulma.css';
 
 function LandingPage() {
+  document.onload = document.title = 'JRS Student Directory';
+
   return (
     <span>
       <div className='has-text-centered'>
@@ -12,8 +14,7 @@ function LandingPage() {
       <span className='columns is-flex is-centered'>
         <div
           className='column is-one-third box has-text-centered is-primary'
-          style={{ backgroundColor: 'honeydew' }}
-        >
+          style={{backgroundColor: 'honeydew'}}>
           <div className='land-btn'>
             <Link to='/student-view'>
               <button className='button is-inline-flex is-large is-rounded'>
@@ -41,7 +42,7 @@ function LandingPage() {
         </div>
       </span>
     </span>
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;
