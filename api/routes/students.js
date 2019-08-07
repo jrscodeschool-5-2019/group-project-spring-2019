@@ -57,22 +57,7 @@ router.post('/registration', async (req, res) => {
 
 // POSTMAN
 router.post('/add-students', async (req, res) => {
-  const {
-    username,
-    password,
-    name,
-    email,
-    img,
-    gradYear,
-    employer,
-    bio,
-    contactLinks,
-    finalProject,
-    currentStudent,
-    seekingEmployment,
-    location,
-  } = req.body;
-
+  const {username, email} = req.body;
   // ADD VALIDATION
   Student.findOne({email: email}, (err, student) => {
     if (err) {
@@ -90,24 +75,7 @@ router.post('/add-students', async (req, res) => {
             error: 'Sorry, that username is already in use',
           });
         } else {
-          const newStudent = new Student({
-            username: username,
-            password: password,
-            email: email,
-            name: {
-              first: name.first,
-              last: name.last,
-            },
-            img: img,
-            gradYear: gradYear,
-            employer: employer,
-            bio: bio,
-            contactLinks: contactLinks,
-            finalProject: finalProject,
-            currentStudent: currentStudent,
-            seekingEmployment: seekingEmployment,
-            location: location,
-          });
+          const newStudent = new Student(req.body);
           newStudent.save((err, savedStudent) => {
             if (err) return res.json(err);
             res.json(savedStudent);
