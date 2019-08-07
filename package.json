@@ -23,7 +23,11 @@
   "devDependencies": {},
   "dependencies": {
     "@reach/router": "^1.2.1",
+    "axios": "^0.19.0",
+    "body-parser": "^1.19.0",
     "bulma": "^0.7.5",
+    "http-proxy-middleware": "^0.19.1",
+    "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "^3.0.1"

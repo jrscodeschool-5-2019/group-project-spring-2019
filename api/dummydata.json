@@ -1,0 +1,114 @@
+{
+  "data": [
+    {
+      "img": "https://lafeber.com/pet-birds/wp-content/uploads/2018/06/Cockatiel-2.jpg",
+      "gradYear": "2017",
+      "employer": "Bird Tech, Co.",
+      "bio": "Freelancer. Loves React and birdwatching.",
+      "contactLinks": {
+        "gitHub": "www.github.com/birdwatcher",
+        "linkedIn": "www.linkedin.com/in/birdwatcher",
+        "other": "Lorem ipsum"
+      },
+      "finalProject": "Nest Egg",
+      "name": {
+        "first": "Cindy",
+        "last": "Mann"
+      },
+      "currentStudent": false,
+      "seekingEmployment": false,
+      "username": "birdsarecool",
+      "email": "iheartbirds@gmail.com",
+      "password": "birdsarethebest",
+      "location": "Charleston, SC"
+    },
+    {
+      "img": "https://res.cloudinary.com/jerrick/image/upload/f_auto,fl_progressive,q_auto,c_fit,w_1560/ts3tmoxwwjpqjaamilzi",
+      "gradYear": "2016",
+      "employer": "Snakes R Us",
+      "bio": "Mostly code in Python",
+      "contactLinks": {
+        "gitHub": "www.github.com/monty",
+        "linkedIn": "www.linkedin.com/in/monty",
+        "other": "www.twitter.com/monty"
+      },
+      "finalProject": "Sun Spotter",
+      "name": {
+        "first": "Monty",
+        "last": "Python"
+      },
+      "currentStudent": false,
+      "seekingEmployment": false,
+      "username": "snakes4life",
+      "email": "snakes4life@gmail.com",
+      "password": "ilovesnakes",
+      "location": "Mt Pleasant, SC"
+    },
+    {
+      "img": "https://bloximages.chicago2.vip.townnews.com/presspubs.com/content/tncms/assets/v3/editorial/7/ca/7ca7b3bc-4d98-11e8-ac99-d78e026f8138/5ae8fa41772c8.image.jpg?resize=620%2C496",
+      "gradYear": "2018",
+      "employer": "Unemployed",
+      "bio": "JavaScript, React, Mongo, and PHP",
+      "contactLinks": {
+        "gitHub": "www.github.com/sam",
+        "linkedIn": "www.linkedin.com/in/sam",
+        "other": "www.twitter.com/sam"
+      },
+      "finalProject": "Playing Dead: The Game",
+      "name": {
+        "first": "Sam",
+        "last": "Dover"
+      },
+      "currentStudent": true,
+      "seekingEmployment": true,
+      "username": "possumsFTW",
+      "email": "possumsFTW@gmail.com",
+      "password": "possumsaredope",
+      "location": "Charleston, SC"
+    },
+    {
+      "img": "https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/f_auto,q_auto,w_1100/v1555274413/shape/mentalfloss/istock-498886489.jpg",
+      "gradYear": "2019",
+      "employer": "Unemployed",
+      "bio": "Full stack developer seeking employment in the Charleston area",
+      "contactLinks": {
+        "gitHub": "www.github.com/gretchen",
+        "linkedIn": "www.linkedin.com/in/gretchen",
+        "other": ""
+      },
+      "finalProject": "Honeybadger eCommerce Platform",
+      "name": {
+        "first": "Gretchen",
+        "last": "Boon"
+      },
+      "currentStudent": false,
+      "seekingEmployment": true,
+      "username": "honeybadgersarethebest",
+      "email": "honeybadgersarethebest@gmail.com",
+      "password": "ihearthoneybadger",
+      "location": "Oklahoma City, OK"
+    },
+    {
+      "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg/440px-Sea_Otter_%28Enhydra_lutris%29_%2825169790524%29_crop.jpg",
+      "gradYear": "2019",
+      "employer": "Unemployed",
+      "bio": "Frontend Wizard, loves React",
+      "contactLinks": {
+        "gitHub": "www.github.com/otto",
+        "linkedIn": "www.linkedin.com/in/otto",
+        "other": ""
+      },
+      "finalProject": "Seashell ID App",
+      "name": {
+        "first": "Otto",
+        "last": "Donaldson"
+      },
+      "currentStudent": true,
+      "seekingEmployment": true,
+      "username": "ottersrule",
+      "email": "ottersrule@gmail.com",
+      "password": "ottersarecute",
+      "location": "Australia"
+    }
+  ]
+}

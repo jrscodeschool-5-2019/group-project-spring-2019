@@ -1,0 +1,27 @@
+.sidebar {
+  background-color: white;
+  padding-top: 50px;
+}
+
+h1 {
+  font-size: 1.5em;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.bottomtag {
+  padding-top: 30px;
+  font-size: 0.75em;
+}
+
+.event-desc {
+  font-size: 0.7em;
+}
+
+.event-list-item {
+  padding: 10px 5px;
+}
+
+.event-title {
+  margin: 0px 0px 10px 20px;
+}
