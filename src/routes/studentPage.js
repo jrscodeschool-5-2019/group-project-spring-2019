@@ -120,7 +120,7 @@ function Page() {
                   </div>
                   <div className='control'>
                     <div className='filterer'>
-                      <div className='dropdown is-right'>
+                      <div className='dropdown is-right is-hoverable'>
                         <div className='dropdown-trigger'>
                           <button
                             className='button'
