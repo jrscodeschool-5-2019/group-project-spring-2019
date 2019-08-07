@@ -4,7 +4,7 @@ const Profile = props => {
   return (
     <div>
       This is a placeholder profile page!
-      {props.user.loggedIn && <p>{props.user.username}</p>}
+      {props.user.loggedIn && <p>Welcome, {props.user.username}!</p>}
     </div>
   );
 };
