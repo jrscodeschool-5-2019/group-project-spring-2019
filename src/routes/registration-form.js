@@ -1,4 +1,4 @@
-import React, {useReducer} from 'react';
+import React, {useReducer, useState} from 'react';
 import {Link, navigate} from '@reach/router';
 import {merge} from 'ramda';
 import Logo from '../img/JRS_Coding_School_logo.png';
@@ -31,16 +31,20 @@ function reducer(state, {type, payload}) {
 
 const Registration = props => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isEnabled, setIsEnabled] = useState(false);
 
   document.onload = document.title = 'Student/Alumni Registration';
 
-  const isEnabled =
+  const runValidation = () => {
     state.name.first.length > 0 &&
     state.email.includes('@') &&
     state.email.includes('.com') &&
     state.email.length > 0 &&
-    state.password.length > 8 &&
-    state.username.length > 0;
+    state.password.length >= 8 &&
+    state.username.length > 0
+      ? setIsEnabled(true)
+      : setIsEnabled(false);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -66,27 +70,17 @@ const Registration = props => {
       });
   };
 
-  function emailValidationColors() {
-    if (state.email.includes('@') && state.email.includes('.com')) {
-      document.getElementById('email-input').style.outlineColor = 'green';
-    } else {
-      document.getElementById('email-input').style.className = 'is-danger';
-    }
-  }
+  const addDangerToEmail = () => {
+    return state.email.includes('@') && state.email.includes('.com')
+      ? ''
+      : state.email.length > 0
+      ? 'is-danger'
+      : '';
+  };
 
-  function passwordValidation() {
-    if (state.password.length < 8) {
-      document.getElementById('password-input').style.className = 'is-danger';
-    } else {
-      document.getElementById('password-input').style.borderColor =
-        'rgb(238, 238, 238';
-    }
-  }
-
-  function validationColors() {
-    emailValidationColors();
-    passwordValidation();
-  }
+  const addDangerToPassword = () => {
+    return state.password.length > 0 && state.password.length < 8 ? 'is-danger' : '';
+  };
 
   return (
     <span className='reg-page box' style={{backgroundColor: 'honeydew'}}>
@@ -96,7 +90,8 @@ const Registration = props => {
         </Link>
       </div>
       <form
-        // onChange={validationColors}
+        onChange={runValidation}
+        onBlur={runValidation}
         onSubmit={handleSubmit}
         className='columns has-text-centered is-half'>
         <div className='column'>
@@ -135,7 +130,7 @@ const Registration = props => {
           <div className='reg-name-input'>
             <input
               id='email-input'
-              className='form-input input'
+              className={`form-input input ${addDangerToEmail()}`}
               type='text'
               name='email'
               value={state.email}
@@ -145,7 +140,6 @@ const Registration = props => {
                   payload: e.target.value,
                 });
               }}
-              // onBlur={emailValidationColors()}
               placeholder='Email Address'
             />
           </div>
@@ -167,11 +161,10 @@ const Registration = props => {
           <div className='reg-name-input'>
             <input
               id='password-input'
-              className='form-input input'
+              className={`form-input input ${addDangerToPassword()}`}
               type='password'
               name='password'
               value={state.password}
-              onBlur={passwordValidation}
               onChange={e =>
                 dispatch({
                   type: 'SET_PASSWORD',
