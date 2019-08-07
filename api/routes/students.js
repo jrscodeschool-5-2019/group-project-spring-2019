@@ -55,6 +55,36 @@ router.post('/registration', async (req, res) => {
   });
 });
 
+// POSTMAN
+router.post('/add-students', async (req, res) => {
+  const {username, email} = req.body;
+  // ADD VALIDATION
+  Student.findOne({email: email}, (err, student) => {
+    if (err) {
+      console.log('students.js post error: ', err);
+    } else if (student) {
+      res.json({
+        error: 'Sorry, that email is already in use',
+      });
+    } else
+      Student.findOne({username: username}, (err, student) => {
+        if (err) {
+          console.log('students.js post error: ', err);
+        } else if (student) {
+          res.json({
+            error: 'Sorry, that username is already in use',
+          });
+        } else {
+          const newStudent = new Student(req.body);
+          newStudent.save((err, savedStudent) => {
+            if (err) return res.json(err);
+            res.json(savedStudent);
+          });
+        }
+      });
+  });
+});
+
 // router.post('/student-login', function(req, res, next) {
 //   passport.authenticate('local', function(err, user, info) {
 //     req.login(user, function(err) {
