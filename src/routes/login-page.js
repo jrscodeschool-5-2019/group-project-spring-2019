@@ -9,6 +9,7 @@ const Login = props => {
     password: '',
   });
 
+  // this throws an error in the console, but it still works
   useEffect(() => {
     if (props.user.loggedIn) {
       redirectTo(`/profile/${props.user.username}`);
@@ -68,7 +69,7 @@ const Login = props => {
             <h1>Alumni Login</h1>
             <div className='reg-name-input'>
               <input
-                className='form-input'
+                className='form-input input'
                 type='text'
                 name='username'
                 placeholder='Username'
@@ -78,7 +79,7 @@ const Login = props => {
             </div>
             <div className='reg-name-input'>
               <input
-                className='form-input'
+                className='form-input input'
                 type='password'
                 name='password'
                 placeholder='Password'

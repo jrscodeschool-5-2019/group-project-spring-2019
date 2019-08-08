@@ -68,6 +68,7 @@ const Registration = props => {
           console.log('successful signup');
           navigate('/student-login');
         } else {
+          alert(res.error);
           console.log('username or email already in use');
         }
       })

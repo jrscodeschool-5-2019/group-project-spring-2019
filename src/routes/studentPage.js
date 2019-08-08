@@ -1,27 +1,27 @@
-import React, { useEffect, useState } from 'react'
-import 'bulma/css/bulma.css'
-import CardList from '../components/card-list/CardList'
-import SearchDirectory from '../components/search-directory/SearchDirectory'
-import SideBar from '../components/sidebar/Sidebar'
-import Filter from '../components/filter/Filter'
+import React, { useEffect, useState } from "react";
+import "bulma/css/bulma.css";
+import CardList from "../components/card-list/CardList";
+import SearchDirectory from "../components/search-directory/SearchDirectory";
+import SideBar from "../components/sidebar/Sidebar";
+import Filter from "../components/filter/Filter";
 
 const Page = () => {
-  const [users, setUsers] = useState([])
-  const [filteredCards, setFilteredCards] = useState([])
-  const [search, setSearch] = useState('')
+  const [users, setUsers] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
-    fetch('http://localhost:8000/student-view')
+    fetch("http://localhost:8000/student-view")
       .then(res => res.json())
       .then(data => {
-        setUsers(data.data)
-        setFilteredCards(data.data)
-      })
-  }, [])
+        setUsers(data.data);
+        setFilteredCards(data.data);
+      });
+  }, []);
 
   const handleChange = e => {
-    setSearch(e.target.value)
-  }
+    setSearch(e.target.value);
+  };
 
   const filteredUsers = filteredCards.filter(
     user =>
@@ -29,22 +29,22 @@ const Page = () => {
       user.name.last.toLowerCase().includes(search.toLowerCase()) +
       user.employer.toLowerCase().includes(search.toLowerCase()) +
       user.location.toLowerCase().includes(search.toLowerCase())
-  )
+  );
 
   return (
     <div>
-      <div className='columns'>
+      <div className="columns">
         {/* search bar */}
         <SideBar />
-        <div className='column is-9'>
-          <div className='container'>
-            <div className='section'>
-              <div className='box'>
-                <div className='field has-addons'>
-                  <div className='control is-expanded'>
+        <div className="column is-9">
+          <div className="container">
+            <div className="section">
+              <div className="box">
+                <div className="field has-addons">
+                  <div className="control is-expanded">
                     <SearchDirectory handleChange={handleChange} />
                   </div>
-                  <div className='control' />
+                  <div className="control" />
                   <Filter users={users} setFilteredCards={setFilteredCards} />
                 </div>
               </div>
@@ -55,7 +55,7 @@ const Page = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;

@@ -1,7 +1,7 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
-const Student = require('../models/Student');
+const passport = require("passport");
+const Student = require("../models/Student");
 
 // caching disabled for every route
 // prevents user from being able to see protected routes using browser's 'back' button
@@ -9,11 +9,12 @@ const Student = require('../models/Student');
 // must place this block of code before defining routes
 router.use((req, res, next) => {
   res.set(
-    'Cache-Control',
-    'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0'
+    "Cache-Control",
+    "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
   next();
 });
+
 
 // REGISTER
 // POST to http://localhost:8000/registration
@@ -21,20 +22,20 @@ router.post('/registration', async (req, res) => {
   const {username, password, name, email} = req.body;
 
   // ADD VALIDATION
-  Student.findOne({email: email}, (err, student) => {
+  Student.findOne({ email: email }, (err, student) => {
     if (err) {
-      console.log('students.js post error: ', err);
+      console.log("students.js post error: ", err);
     } else if (student) {
       res.json({
-        error: 'Sorry, that email is already in use',
+        error: "Sorry, that email is already in use"
       });
     } else
-      Student.findOne({username: username}, (err, student) => {
+      Student.findOne({ username: username }, (err, student) => {
         if (err) {
-          console.log('students.js post error: ', err);
+          console.log("students.js post error: ", err);
         } else if (student) {
           res.json({
-            error: 'Sorry, that username is already in use',
+            error: "Sorry, that username is already in use"
           });
         } else {
           const newStudent = new Student({
@@ -43,9 +44,10 @@ router.post('/registration', async (req, res) => {
             email: email,
             name: {
               first: name.first,
-              last: name.last,
+              last: name.last
             },
             gradYear: '',
+            img: '',
             currentStudent: false,
             employer: '',
             seekingEmployment: false,
@@ -67,26 +69,27 @@ router.post('/registration', async (req, res) => {
   });
 });
 
+
 // For adding dummy data through Postman
 // POST to http://localhost:8000/add-students
 router.post('/add-students', async (req, res) => {
   const {username, email} = req.body;
 
   // ADD VALIDATION
-  Student.findOne({email: email}, (err, student) => {
+  Student.findOne({ email: email }, (err, student) => {
     if (err) {
-      console.log('students.js post error: ', err);
+      console.log("students.js post error: ", err);
     } else if (student) {
       res.json({
-        error: 'Sorry, that email is already in use',
+        error: "Sorry, that email is already in use"
       });
     } else
-      Student.findOne({username: username}, (err, student) => {
+      Student.findOne({ username: username }, (err, student) => {
         if (err) {
-          console.log('students.js post error: ', err);
+          console.log("students.js post error: ", err);
         } else if (student) {
           res.json({
-            error: 'Sorry, that username is already in use',
+            error: "Sorry, that username is already in use"
           });
         } else {
           const newStudent = new Student(req.body);
@@ -103,7 +106,7 @@ router.post('/add-students', async (req, res) => {
 // POST to http://localhost:8000/student-login
 router.post('/student-login', passport.authenticate('local'), (req, res) => {
   const userInfo = {
-    username: req.user.username,
+    username: req.user.username
   };
   res.status(200).send(userInfo);
 });
@@ -113,20 +116,21 @@ router.get('/user', (req, res, next) => {
   console.log('===== user!!======');
   console.log(req.user);
   if (req.user) {
-    res.json({user: req.user});
+    res.json({ user: req.user });
   } else {
-    res.json({user: null});
+    res.json({ user: null });
   }
 });
+
 
 // LOG OUT
 // POST to http://localhost:8000/logout
 router.post('/logout', (req, res) => {
   if (req.user) {
     req.logout();
-    res.send({msg: 'logging out'});
+    res.send({ msg: "logging out" });
   } else {
-    res.send({msg: 'no user to log out'});
+    res.send({ msg: "no user to log out" });
   }
 });
 
