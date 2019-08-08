@@ -96,7 +96,10 @@ function NavMenu(props) {
                 View Students
               </Link>
               {props.user.loggedIn && (
-                <Link to="/profile" user={props.user} className="navbar-item">
+                <Link
+                  to={`/profile/${props.user.username}`}
+                  user={props.user}
+                  className='navbar-item'>
                   Profile
                 </Link>
               )}
