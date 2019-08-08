@@ -37,6 +37,8 @@ const Login = props => {
         console.log(res);
         if (res.status === 200) {
           return res;
+        } else if (res.status === 401) {
+          alert('Incorrect username or password');
         } else {
           throw new Error('login unsuccessful');
         }
