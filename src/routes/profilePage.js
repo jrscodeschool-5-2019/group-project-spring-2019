@@ -16,6 +16,7 @@ const Profile = ({ user }) => {
   const [currentStudent, setCurrentStudent] = useState(false);
   const [seekingEmployment, setSeekingEmployment] = useState(false);
   const [location, setLocation] = useState("");
+  const [id, setId] = useState("");
 
   const handleImg = e => {
     setImg(e.target.value);
@@ -71,26 +72,36 @@ const Profile = ({ user }) => {
       finalProject: finalProject,
       location: location
     };
-    fetch("");
+    fetch(`http://localhost:8000/profile/${id}/edit`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(res => res.json())
+      .then(res => console.log(res))
+      .catch(res => console.log(res));
   };
 
   useEffect(() => {
-    if (user.loggedIn) {
+    if (!user.loggedIn) {
       redirectTo("/student-login");
     }
-    fetch("http://localhost:8000/profile/5d4b2b1b9fbba62a69792845")
+    fetch(`http://localhost:8000/profile/${user.username}`)
       .then(res => res.json())
       .then(data => {
-        setImg(data.img);
-        setGradYear(data.gradYear);
-        setEmployer(data.employer);
-        setBio(data.bio);
-        setContactLinks(data.contactLinks);
-        setFinalProject(data.finalProject);
-        setName(data.name);
-        setCurrentStudent(data.currentStudent);
-        setSeekingEmployment(data.seekingEmployment);
-        setLocation(data.location);
+        setImg(data.student.img);
+        setGradYear(data.student.gradYear);
+        setEmployer(data.student.employer);
+        setBio(data.student.bio);
+        setContactLinks(data.student.contactLinks);
+        setFinalProject(data.student.finalProject);
+        setName(data.student.name);
+        setCurrentStudent(data.student.currentStudent);
+        setSeekingEmployment(data.student.seekingEmployment);
+        setLocation(data.student.location);
+        setId(data.student._id);
       });
   }, []);
 
@@ -101,7 +112,6 @@ const Profile = ({ user }) => {
   return (
     <div>
       <img src={img} alt={img} />
-      <div>{name.first}</div>
       <div className="field">
         <label className="label">Profile Picture</label>
         <div className="control">
@@ -201,12 +211,12 @@ const Profile = ({ user }) => {
         </div>
       </div>
       <div className="field">
-        <label className="label">Github</label>
+        <label className="label">GitHub</label>
         <div className="control">
           <input
             className="input"
             type="text"
-            placeholder="Github"
+            placeholder="GitHub"
             id="gitHub"
             value={contactLinks.gitHub}
             onChange={handleContactLinks}
@@ -259,8 +269,10 @@ const Profile = ({ user }) => {
           Seeking Employment
         </label>
       </div>
-      <button className="button" onClick={handleSubmit} />
-      Submit
+      <button className="button" onClick={handleSubmit}>
+        {" "}
+        Submit{" "}
+      </button>
     </div>
   );
 };

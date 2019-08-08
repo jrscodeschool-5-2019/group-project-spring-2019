@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {navigate, Link} from '@reach/router';
+import React, {useState, useEffect} from 'react';
+import {navigate, Link, redirectTo} from '@reach/router';
 import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
 
@@ -8,6 +8,13 @@ const Login = props => {
     username: '',
     password: '',
   });
+
+  // this throws an error in the console, but it still works
+  useEffect(() => {
+    if (props.user.loggedIn) {
+      redirectTo(`/profile/${props.user.username}`);
+    }
+  }, []);
 
   const handleChange = event => {
     setState({
@@ -62,7 +69,7 @@ const Login = props => {
             <h1>Alumni Login</h1>
             <div className='reg-name-input'>
               <input
-                className='form-input'
+                className='form-input input'
                 type='text'
                 name='username'
                 placeholder='Username'
@@ -72,7 +79,7 @@ const Login = props => {
             </div>
             <div className='reg-name-input'>
               <input
-                className='form-input'
+                className='form-input input'
                 type='password'
                 name='password'
                 placeholder='Password'

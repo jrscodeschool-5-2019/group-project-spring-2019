@@ -1,40 +1,41 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
-const Student = require('../models/Student');
+const passport = require("passport");
+const Student = require("../models/Student");
 
 // caching disabled for every route
-// prevents user from being able to see secret page using browser's 'back' button
+// prevents user from being able to see protected routes using browser's 'back' button
 // may not always work, depending on browser configuration
 // must place this block of code before defining routes
 router.use((req, res, next) => {
   res.set(
-    'Cache-Control',
-    'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0'
+    "Cache-Control",
+    "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0"
   );
   next();
 });
 
-// /register/ (Registration component)
-router.post('/registration', async (req, res) => {
-  console.log('user signup');
 
+// REGISTER
+// POST to http://localhost:8000/registration
+router.post('/registration', async (req, res) => {
   const {username, password, name, email} = req.body;
+
   // ADD VALIDATION
-  Student.findOne({email: email}, (err, student) => {
+  Student.findOne({ email: email }, (err, student) => {
     if (err) {
-      console.log('students.js post error: ', err);
+      console.log("students.js post error: ", err);
     } else if (student) {
       res.json({
-        error: 'Sorry, that email is already in use',
+        error: "Sorry, that email is already in use"
       });
     } else
-      Student.findOne({username: username}, (err, student) => {
+      Student.findOne({ username: username }, (err, student) => {
         if (err) {
-          console.log('students.js post error: ', err);
+          console.log("students.js post error: ", err);
         } else if (student) {
           res.json({
-            error: 'Sorry, that username is already in use',
+            error: "Sorry, that username is already in use"
           });
         } else {
           const newStudent = new Student({
@@ -43,8 +44,21 @@ router.post('/registration', async (req, res) => {
             email: email,
             name: {
               first: name.first,
-              last: name.last,
+              last: name.last
             },
+            gradYear: '',
+            img: '',
+            currentStudent: false,
+            employer: '',
+            seekingEmployment: false,
+            bio: '',
+            location: '',
+            contactLinks: {
+              gitHub: '',
+              linkedIn: '',
+              other: '',
+            },
+            finalProject: '',
           });
           newStudent.save((err, savedStudent) => {
             if (err) return res.json(err);
@@ -55,24 +69,27 @@ router.post('/registration', async (req, res) => {
   });
 });
 
-// POSTMAN
+
+// For adding dummy data through Postman
+// POST to http://localhost:8000/add-students
 router.post('/add-students', async (req, res) => {
   const {username, email} = req.body;
+
   // ADD VALIDATION
-  Student.findOne({email: email}, (err, student) => {
+  Student.findOne({ email: email }, (err, student) => {
     if (err) {
-      console.log('students.js post error: ', err);
+      console.log("students.js post error: ", err);
     } else if (student) {
       res.json({
-        error: 'Sorry, that email is already in use',
+        error: "Sorry, that email is already in use"
       });
     } else
-      Student.findOne({username: username}, (err, student) => {
+      Student.findOne({ username: username }, (err, student) => {
         if (err) {
-          console.log('students.js post error: ', err);
+          console.log("students.js post error: ", err);
         } else if (student) {
           res.json({
-            error: 'Sorry, that username is already in use',
+            error: "Sorry, that username is already in use"
           });
         } else {
           const newStudent = new Student(req.body);
@@ -85,105 +102,94 @@ router.post('/add-students', async (req, res) => {
   });
 });
 
-// router.post('/student-login', function(req, res, next) {
-//   passport.authenticate('local', function(err, user, info) {
-//     req.login(user, function(err) {
-//       res.status(200).send(JSON.stringify(user));
-//     });
-//   })(req, res, next);
-// });
-
-// Student log in
+// LOG IN
+// POST to http://localhost:8000/student-login
 router.post('/student-login', passport.authenticate('local'), (req, res) => {
-  console.log('logged in', req.user);
   const userInfo = {
-    username: req.user.username,
+    username: req.user.username
   };
   res.status(200).send(userInfo);
 });
 
-// get user - not working
+// get user - not really working, but leaving it here anyways
 router.get('/user', (req, res, next) => {
   console.log('===== user!!======');
   console.log(req.user);
   if (req.user) {
-    res.json({user: req.user});
+    res.json({ user: req.user });
   } else {
-    res.json({user: null});
+    res.json({ user: null });
   }
 });
 
-// log out
+
+// LOG OUT
+// POST to http://localhost:8000/logout
 router.post('/logout', (req, res) => {
   if (req.user) {
     req.logout();
-    res.send({msg: 'logging out'});
+    res.send({ msg: "logging out" });
   } else {
-    res.send({msg: 'no user to log out'});
+    res.send({ msg: "no user to log out" });
   }
 });
 
-// /directory/ (Directory landing page)
+// GET ALL STUDENTS
+// GET from http://localhost:8000/directory
 router.route('/directory').get(async (req, res) => {
   await Student.find({}).then(students => res.json({status: 'ok', data: students}));
 });
 
-// /directory/ (Directory landing page)
+// GET ALL STUDENTS (another route, does the same thing as /directory)
+// GET from http://localhost:8000/student-view
 router.route('/student-view').get(async (req, res) => {
   await Student.find({}).then(students => res.json({status: 'ok', data: students}));
 });
 
+// GET ONE STUDENT BY ID
+// NOTE: frontend is not using this, so commenting out for now
 // /directory/:studentId (Details component)
-router.route('/:studentId').get(async (req, res) => {
-  await Student.findById(req.params.studentId).then(foundStudent =>
-    res.json(foundStudent)
+// router.route('/:studentId').get(async (req, res) => {
+//   await Student.findById(req.params.studentId).then(foundStudent =>
+//     res.json(foundStudent)
+//   );
+// });
+
+// GET USER'S PROFILE BY USERNAME
+// GET from http://localhost:8000/profile/${username}
+router.route('/profile/:username').get(async (req, res) => {
+  await Student.findOne({username: req.params.username}, (err, foundStudent) =>
+    res.json({status: 'ok', student: foundStudent})
   );
 });
 
-// /directory/profile/:studentId (Profile component)
-router.route('/profile/:studentId').get(async (req, res) => {
-  await Student.findById(req.params.studentId).then(foundStudent =>
-    res.json(foundStudent)
-  );
-});
+// EDIT USER'S PROFILE INFORMATION
+// PUT to http://localhost:8000/profile/${_id}/edit
+router.route('/profile/:studentId/edit').put(async (req, res) => {
+  await Student.findById(req.params.studentId).then(foundStudent => {
+    foundStudent.name = req.body.name;
+    foundStudent.img = req.body.img;
+    foundStudent.gradYear = req.body.gradYear;
+    foundStudent.currentStudent = req.body.currentStudent;
+    foundStudent.employer = req.body.employer;
+    foundStudent.seekingEmployment = req.body.seekingEmployment;
+    foundStudent.bio = req.body.bio;
+    foundStudent.location = req.body.location;
+    foundStudent.contactLinks = req.body.contactLinks;
+    foundStudent.finalProject = req.body.finalProject;
+    foundStudent.save();
 
-// /directory/profile/:studentId/edit (Profile component - edit mode)
-router
-  .route('/profile/:studentId/edit')
-  .put(async (req, res) => {
-    await Student.findById(req.params.studentId).then(foundStudent => {
-      foundStudent.name.first = req.body.firstName;
-      foundStudent.name.last = req.body.lastName;
-      foundStudent.img = req.body.img;
-      foundStudent.gradYear = req.body.gradYear;
-      foundStudent.currentStudent = req.body.currentStudent;
-      foundStudent.employer = req.body.employer;
-      foundStudent.seekingEmployment = req.body.seekingEmployment;
-      foundStudent.bio = req.body.bio;
-      foundStudent.location = req.body.location;
-      foundStudent.contactLinks.gitHub = req.body.gitHub;
-      foundStudent.contactLinks.linkedIn = req.body.linkedIn;
-      foundStudent.contactLinks.other = req.body.otherLink;
-      foundStudent.finalProject = req.body.finalProject;
-      foundStudent.save();
-
-      res.json(foundStudent);
-    });
-  })
-
-  // maybe don't have this? Instead, `delete` button can be a POST that clears the card fields?
-  .delete(async (req, response) => {
-    await Student.findByIdAndDelete(req.params.studentId).then(res => {
-      response.json({status: 'ok', res: req.params.studentId});
-    });
+    res.json(foundStudent);
   });
-
-// create middleware to check if logged in
-const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/student-login');
-};
+});
+// DELETE STUDENT BY USERNAME - NOT INCLUDING THIS AT THE MOMENT
+// DELETE from http://localhost:8000/profile/${username}/delete
+// .delete(async (req, response) => {
+//   req.logout();
+//   await Student.findOne({username: req.params.username}),
+//     res => {
+//       response.json({status: 'ok', res: req.params.username});
+//     };
+// });
 
 module.exports = router;

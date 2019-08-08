@@ -8,13 +8,23 @@ import Profile from "./routes/profilePage";
 import NavMenu from "./components/navMenu";
 
 function App() {
-  const [user, setUser] = useState({ loggedIn: false, username: "" });
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("loggedInUser")) || {
+      loggedIn: false,
+      username: ""
+    }
+  );
 
   useEffect(() => getUser(), []);
 
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+  }, [user]);
+  console.log(user);
+
   const updateUser = userObject => setUser(userObject);
 
-  // getUser is not really working (backend issue I think)
+  // I don't think we need this, but I'm afraid to delete it. So here it will remain.
   const getUser = () => {
     fetch("http://localhost:8000/user/", {
       method: "GET",
@@ -47,10 +57,10 @@ function App() {
 
       <Router>
         <LandingPage path="/" />
-        <Registration path="/registration" />
-        <Login path="/student-login" updateUser={updateUser} />
+        <Registration path="/registration" user={user} />
+        <Login path="/student-login" updateUser={updateUser} user={user} />
         <Page path="/student-view" />
-        <Profile path="/profile" user={user} />
+        <Profile path="/profile/:username" user={user} />
       </Router>
     </div>
   );

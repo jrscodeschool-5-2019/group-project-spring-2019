@@ -10,6 +10,14 @@ function NavMenu(props) {
   const hamburgerHelper = e =>
     isActive ? setIsActive('') : setIsActive('is-active');
 
+  // const LoggedInMessage = () => {
+  //   if ((props.user.LoggedIn = true)) {
+  //     return <div>Hello, {props.user.username}!</div>;
+  //   } else if ((props.user.LoggedIn = false)) {
+  //     return <div />;
+  //   }
+  // };
+
   const logout = event => {
     event.preventDefault();
 
@@ -33,8 +41,6 @@ function NavMenu(props) {
   };
 
   return (
-    // Navagation section and logo
-
     <div>
       <nav className='navbar'>
         <div className='container'>
@@ -78,7 +84,10 @@ function NavMenu(props) {
                 View Students
               </Link>
               {props.user.loggedIn && (
-                <Link to='/profile' user={props.user} className='navbar-item'>
+                <Link
+                  to={`/profile/${props.user.username}`}
+                  user={props.user}
+                  className='navbar-item'>
                   Profile
                 </Link>
               )}
