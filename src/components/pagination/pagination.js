@@ -1,4 +1,5 @@
 import React from "react";
+import "bulma/css/bulma.css";
 
 const Pagination = ({ cardsPerPage, totalCards, paginate }) => {
   const pageNumbers = [];
@@ -9,7 +10,7 @@ const Pagination = ({ cardsPerPage, totalCards, paginate }) => {
     <nav>
       <ul>
         {pageNumbers.map(number => (
-          <li key={number}>
+          <li className="box is-inline pagination-btn" key={number}>
             <a onClick={() => paginate(number)}>{number}</a>
           </li>
         ))}
