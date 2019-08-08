@@ -16,7 +16,7 @@ function App() {
   );
 
   useEffect(() => getUser(), []);
-  
+
   useEffect(() => {
     localStorage.setItem("loggedInUser", JSON.stringify(user));
   }, [user]);
@@ -26,9 +26,9 @@ function App() {
 
   // I don't think we need this, but I'm afraid to delete it. So here it will remain.
   const getUser = () => {
-    fetch('http://localhost:8000/user/', {
-      method: 'GET',
-      headers: {'Content-Type': 'application/json'},
+    fetch("http://localhost:8000/user/", {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
     })
       .then(response => response.json())
       .then(res => console.log(res));
@@ -56,11 +56,11 @@ function App() {
       <NavMenu user={user} updateUser={updateUser} />
 
       <Router>
-        <LandingPage path='/' />
-        <Registration path='/registration' user={user} />
-        <Login path='/student-login' updateUser={updateUser} user={user} />
-        <Page path='/student-view' />
-        <Profile path='/profile/:username' user={user} />
+        <LandingPage path="/" />
+        <Registration path="/registration" user={user} />
+        <Login path="/student-login" updateUser={updateUser} user={user} />
+        <Page path="/student-view" />
+        <Profile path="/profile/:username" user={user} />
       </Router>
     </div>
   );
