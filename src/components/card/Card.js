@@ -1,6 +1,6 @@
-import React from "react";
-import "bulma/css/bulma.css";
-import "./card-styles.css";
+
+import React from 'react'
+import './card-styles.css'
 
 const Card = ({ user }) => {
   return (
