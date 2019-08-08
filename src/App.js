@@ -47,8 +47,8 @@ function App() {
 
       <Router>
         <LandingPage path='/' />
-        <Registration path='/registration' />
-        <Login path='/student-login' updateUser={updateUser} />
+        <Registration path='/registration' user={user} />
+        <Login path='/student-login' updateUser={updateUser} user={user} />
         <Page path='/student-view' />
         <Profile path='/profile/:username' user={user} />
       </Router>

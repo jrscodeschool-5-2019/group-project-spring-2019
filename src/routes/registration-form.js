@@ -1,5 +1,5 @@
-import React, {useReducer, useState} from 'react';
-import {Link, navigate} from '@reach/router';
+import React, {useReducer, useState, useEffect} from 'react';
+import {Link, navigate, redirectTo} from '@reach/router';
 import {merge} from 'ramda';
 import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
@@ -34,6 +34,13 @@ const Registration = props => {
   const [isEnabled, setIsEnabled] = useState(false);
 
   document.onload = document.title = 'Student/Alumni Registration';
+
+  // this throws an error in the console, but it still works
+  useEffect(() => {
+    if (props.user.loggedIn) {
+      redirectTo(`/profile/${props.user.username}`);
+    }
+  }, []);
 
   const runValidation = () => {
     state.name.first.length > 0 &&

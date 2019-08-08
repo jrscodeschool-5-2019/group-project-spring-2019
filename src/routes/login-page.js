@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {navigate, Link} from '@reach/router';
+import React, {useState, useEffect} from 'react';
+import {navigate, Link, redirectTo} from '@reach/router';
 import Logo from '../img/JRS_Coding_School_logo.png';
 import 'bulma/css/bulma.css';
 
@@ -8,6 +8,12 @@ const Login = props => {
     username: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (props.user.loggedIn) {
+      redirectTo(`/profile/${props.user.username}`);
+    }
+  }, []);
 
   const handleChange = event => {
     setState({
