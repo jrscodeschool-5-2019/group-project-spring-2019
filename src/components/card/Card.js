@@ -1,5 +1,4 @@
 import React from 'react'
-import 'bulma/css/bulma.css'
 import './card-styles.css'
 
 const Card = ({ user }) => {
