@@ -1,16 +1,26 @@
-import React, {useState, useEffect} from 'react';
-import {Router} from '@reach/router';
-import LandingPage from './routes/landingPage';
-import Registration from './routes/registration-form';
-import Login from './routes/login-page';
-import Page from './routes/studentPage';
-import Profile from './routes/profilePage';
-import NavMenu from './components/navMenu';
+import React, { useState, useEffect } from "react";
+import { Router } from "@reach/router";
+import LandingPage from "./routes/landingPage";
+import Registration from "./routes/registration-form";
+import Login from "./routes/login-page";
+import Page from "./routes/studentPage";
+import Profile from "./routes/profilePage";
+import NavMenu from "./components/navMenu";
 
 function App() {
-  const [user, setUser] = useState({loggedIn: false, username: ''});
+  const [user, setUser] = useState(
+    JSON.parse(localStorage.getItem("loggedInUser")) || {
+      loggedIn: false,
+      username: ""
+    }
+  );
 
   useEffect(() => getUser(), []);
+  
+  useEffect(() => {
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+  }, [user]);
+  console.log(user);
 
   const updateUser = userObject => setUser(userObject);
 
