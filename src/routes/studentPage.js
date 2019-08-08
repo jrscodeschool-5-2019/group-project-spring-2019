@@ -4,11 +4,14 @@ import CardList from '../components/card-list/CardList';
 import SearchDirectory from '../components/search-directory/SearchDirectory';
 import SideBar from '../components/sidebar/Sidebar';
 import Filter from '../components/filter/Filter';
+import Pagination from '../components/pagination/pagination';
 
 const Page = () => {
   const [users, setUsers] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [search, setSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [cardsPerPage] = useState(6);
 
   useEffect(() => {
     fetch('http://localhost:8000/student-view')
@@ -22,14 +25,24 @@ const Page = () => {
   const handleChange = e => {
     setSearch(e.target.value);
   };
-
   const filteredUsers = filteredCards.filter(
-    user =>
-      user.name.first.toLowerCase().includes(search.toLowerCase()) +
-      user.name.last.toLowerCase().includes(search.toLowerCase()) +
-      user.employer.toLowerCase().includes(search.toLowerCase()) +
-      user.location.toLowerCase().includes(search.toLowerCase())
+    currentUsers =>
+      currentUsers.name.first.toLowerCase().includes(search.toLowerCase()) +
+      currentUsers.name.last.toLowerCase().includes(search.toLowerCase()) +
+      currentUsers.employer.toLowerCase().includes(search.toLowerCase()) +
+      currentUsers.location.toLowerCase().includes(search.toLowerCase())
   );
+
+  const indexOfLastUser = currentPage * cardsPerPage;
+  const indexOfFirstUser = indexOfLastUser - cardsPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+
+  // console.log(currentUsers);
+  // console.log(users);
+
+  const paginate = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
@@ -51,7 +64,12 @@ const Page = () => {
             </div>
           </div>
           {/* Cards called in here */}
-          <CardList users={filteredUsers} />
+          <CardList users={currentUsers} />
+          <Pagination
+            cardsPerPage={cardsPerPage}
+            totalCards={users.length}
+            paginate={paginate}
+          />
         </div>
       </div>
     </div>
