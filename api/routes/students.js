@@ -4,7 +4,7 @@ const passport = require('passport');
 const Student = require('../models/Student');
 
 // caching disabled for every route
-// prevents user from being able to see secret page using browser's 'back' button
+// prevents user from being able to see protected routes using browser's 'back' button
 // may not always work, depending on browser configuration
 // must place this block of code before defining routes
 router.use((req, res, next) => {
@@ -15,7 +15,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// /register/ (Registration component)
+// /registration
 router.post('/registration', async (req, res) => {
   console.log('user signup');
 
@@ -45,6 +45,18 @@ router.post('/registration', async (req, res) => {
               first: name.first,
               last: name.last,
             },
+            gradYear: '',
+            currentStudent: false,
+            employer: '',
+            seekingEmployment: false,
+            bio: '',
+            location: '',
+            contactLinks: {
+              gitHub: '',
+              linkedIn: '',
+              other: '',
+            },
+            finalProject: '',
           });
           newStudent.save((err, savedStudent) => {
             if (err) return res.json(err);
