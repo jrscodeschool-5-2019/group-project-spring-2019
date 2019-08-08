@@ -45,6 +45,7 @@ router.post("/registration", async (req, res) => {
               first: name.first,
               last: name.last
             },
+            img: "",
             gradYear: "",
             currentStudent: false,
             employer: "",

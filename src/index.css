@@ -4,7 +4,6 @@
 }
 html,
 body {
-  width: 100%;
   background-color: rgb(150, 186, 253);
 }
 
@@ -13,6 +12,7 @@ body {
 }
 .form {
   align-self: center;
+  height: 100%;
 }
 .form-input {
   width: 50%;
