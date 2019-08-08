@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { Router } from '@reach/router'
-import LandingPage from './routes/landingPage'
-import Registration from './routes/registration-form'
-import Login from './routes/login-page'
-import Page from './routes/studentPage'
-import Profile from './routes/profilePage'
-import NavMenu from './components/navMenu'
+import React, {useState, useEffect} from 'react';
+import {Router} from '@reach/router';
+import LandingPage from './routes/landingPage';
+import Registration from './routes/registration-form';
+import Login from './routes/login-page';
+import Page from './routes/studentPage';
+import Profile from './routes/profilePage';
+import NavMenu from './components/navMenu';
 
 function App() {
-  const [user, setUser] = useState({ loggedIn: false, username: '' })
+  const [user, setUser] = useState({loggedIn: false, username: ''});
 
-  useEffect(() => getUser(), [])
+  useEffect(() => getUser(), []);
 
-  const updateUser = userObject => setUser(userObject)
+  const updateUser = userObject => setUser(userObject);
 
-  // getUser is not really working (backend issue I think)
+  // I don't think we need this, but I'm afraid to delete it. So here it will remain.
   const getUser = () => {
     fetch('http://localhost:8000/user/', {
       method: 'GET',
-      headers: { 'Content-Type': 'application/json' }
+      headers: {'Content-Type': 'application/json'},
     })
       .then(response => response.json())
-      .then(res => console.log(res))
+      .then(res => console.log(res));
     // .then(res => {
     //   if (res.user) {
     //     console.log('Get User: There is a user saved in the server session: ');
@@ -39,7 +39,7 @@ function App() {
     //     });
     //   }
     // });
-  }
+  };
 
   return (
     <div>
@@ -50,10 +50,10 @@ function App() {
         <Registration path='/registration' />
         <Login path='/student-login' updateUser={updateUser} />
         <Page path='/student-view' />
-        <Profile path='/profile' user={user} />
+        <Profile path='/profile/:username' user={user} />
       </Router>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
