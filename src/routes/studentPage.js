@@ -43,6 +43,15 @@ const Page = () => {
   const paginate = pageNumber => {
     setCurrentPage(pageNumber);
   };
+  const NoUsers = () => {
+    if (users.length == 0) {
+      return (
+        <div>Oops! looks like there are currently no users to display!</div>
+      );
+    } else {
+      return null;
+    }
+  };
 
   return (
     <div>
@@ -64,12 +73,16 @@ const Page = () => {
             </div>
           </div>
           {/* Cards called in here */}
-          <CardList users={currentUsers} />
-          <Pagination
-            cardsPerPage={cardsPerPage}
-            totalCards={users.length}
-            paginate={paginate}
-          />
+          <NoUsers />
+          <CardList className="cardList" users={currentUsers} />
+          <div>
+            <Pagination
+              className="pagination"
+              cardsPerPage={cardsPerPage}
+              totalCards={users.length}
+              paginate={paginate}
+            />
+          </div>
         </div>
       </div>
     </div>

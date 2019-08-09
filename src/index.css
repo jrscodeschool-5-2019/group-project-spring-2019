@@ -29,6 +29,16 @@ body {
 
 .pagination-btn {
   width: 5%;
-  height: 5%;
+  height: 3%;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.pagination {
+  margin: 5px;
+}
+
+.card-list {
   margin: 5px;
 }
