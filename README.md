@@ -89,7 +89,7 @@ Instructions assume user has Postman installed. In order to install and read set
 
 2. Run a `GET` request with URL http://localhost:8000/directory to confirm you can communicate with database
 
-3. Run a `POST` request with URL http://localhost:8000/directory
+3. Run a `POST` request with URL http://localhost:8000/add-students
 
 4. Below the `POST` url, choose the `Body` radio button, then choose the `raw` radio button, then choose `JSON(application/json)` from dropdown to the right.
 
