@@ -81,9 +81,9 @@ As an unauthenticated user, you can view a list of current and former JRS studen
 
 As an authenticated user (a current or former student), you can create a profile about yourself to include demographic details and other relevant information. You can also view the list of all current and former students in the same way as an unauthenticated user.
 
-## Here are steps to use test data for the database without creating user data through the app:
+## Steps to use test data without creating user data via the JRS Students & Alumni Directory app:
 
-Instructions assume user has Postman installed. In order to install and read setup documentation about postman, go to [Postman Installation & Documentation](https://learning.getpostman.com/docs/postman/collections/intro_to_collections/)
+Instructions assume user has Postman installed. In order to install and read documentation about Postman, go to [Postman Installation & Documentation](https://learning.getpostman.com/docs/postman/collections/intro_to_collections/)
 
 1. Open Postman
 
