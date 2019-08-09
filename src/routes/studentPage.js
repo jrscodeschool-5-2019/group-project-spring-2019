@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
-import "bulma/css/bulma.css";
-import CardList from "../components/card-list/CardList";
-import SearchDirectory from "../components/search-directory/SearchDirectory";
-import SideBar from "../components/sidebar/Sidebar";
-import Filter from "../components/filter/Filter";
-import Pagination from "../components/pagination/pagination";
+import React, { useEffect, useState } from 'react';
+import 'bulma/css/bulma.css';
+import CardList from '../components/card-list/CardList';
+import SearchDirectory from '../components/search-directory/SearchDirectory';
+import SideBar from '../components/sidebar/Sidebar';
+import Filter from '../components/filter/Filter';
+import Pagination from '../components/pagination/pagination';
 
 const Page = () => {
   const [users, setUsers] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [cardsPerPage] = useState(6);
 
   useEffect(() => {
-    fetch("http://localhost:8000/student-view")
+    fetch('http://localhost:8000/student-view')
       .then(res => res.json())
       .then(data => {
         setUsers(data.data);
@@ -46,18 +46,18 @@ const Page = () => {
 
   return (
     <div>
-      <div className="columns">
+      <div className='columns'>
         {/* search bar */}
         <SideBar />
-        <div className="column is-9">
-          <div className="container">
-            <div className="section">
-              <div className="box">
-                <div className="field has-addons">
-                  <div className="control is-expanded">
+        <div className='column is-9'>
+          <div className='container'>
+            <div className='section'>
+              <div className='box'>
+                <div className='field has-addons'>
+                  <div className='control is-expanded'>
                     <SearchDirectory handleChange={handleChange} />
                   </div>
-                  <div className="control" />
+                  <div className='control' />
                   <Filter users={users} setFilteredCards={setFilteredCards} />
                 </div>
               </div>

@@ -81,6 +81,22 @@ As an unauthenticated user, you can view a list of current and former JRS studen
 
 As an authenticated user (a current or former student), you can create a profile about yourself to include demographic details and other relevant information. You can also view the list of all current and former students in the same way as an unauthenticated user.
 
+## Steps to use test data without creating user data via the app:
+
+Instructions assume user has Postman installed. In order to install and read documentation about Postman, go to [Postman Installation & Documentation](https://learning.getpostman.com/docs/postman/collections/intro_to_collections/)
+
+1. Open Postman
+
+2. Run a `GET` request with URL http://localhost:8000/directory to confirm you can communicate with database
+
+3. Run a `POST` request with URL http://localhost:8000/add-students
+
+4. Below the `POST` url, choose the `Body` radio button, then choose the `raw` radio button, then choose `JSON(application/json)` from dropdown to the right.
+
+In your code editor of choice, open the file `dummydata.json` and individually copy/paste the 5 objects in the data array in the `Body` and run the `POST` request.
+
+5. To `DELETE` an individual user, create a `DELETE` request, and use the following url: http://localhost:8000/profile/`USER_ID_TO_BE_DELETED_HERE`/edit
+
 ## Opportunities for Improvement
 
 The following features may be considered for future versions of the app:
