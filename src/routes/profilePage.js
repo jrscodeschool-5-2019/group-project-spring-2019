@@ -111,7 +111,9 @@ const Profile = ({ user }) => {
 
   return (
     <div>
-      <img src={img} alt={img} />
+      <figure class="image is-16x16x">
+        <img src={img} alt={img} />
+      </figure>
       <div className="field">
         <label className="label">Profile Picture</label>
         <div className="control">
@@ -124,27 +126,30 @@ const Profile = ({ user }) => {
           />
         </div>
       </div>
+
       <div className="field">
-        <label className="label">Graduation Year</label>
+        <label className="label">First Name</label>
         <div className="control">
           <input
             className="input"
             type="text"
-            placeholder="Year"
-            value={gradYear}
-            onChange={handleGradYear}
+            placeholder="First Name"
+            id="first"
+            value={name.first}
+            onChange={handleName}
           />
         </div>
       </div>
       <div className="field">
-        <label className="label">Employer</label>
+        <label className="label">Last Name</label>
         <div className="control">
           <input
             className="input"
             type="text"
-            placeholder="Employer"
-            value={employer}
-            onChange={handleEmployer}
+            placeholder="Last Name"
+            id="last"
+            value={name.last}
+            onChange={handleName}
           />
         </div>
       </div>
@@ -173,6 +178,31 @@ const Profile = ({ user }) => {
         </div>
       </div>
       <div className="field">
+        <label className="label">Graduation Year</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            placeholder="Year"
+            value={gradYear}
+            onChange={handleGradYear}
+          />
+        </div>
+      </div>
+      <div className="field">
+        <label className="label">Employer</label>
+        <div className="control">
+          <input
+            className="input"
+            type="text"
+            placeholder="Employer"
+            value={employer}
+            onChange={handleEmployer}
+          />
+        </div>
+      </div>
+
+      <div className="field">
         <label className="label">Location</label>
         <div className="control">
           <input
@@ -184,32 +214,7 @@ const Profile = ({ user }) => {
           />
         </div>
       </div>
-      <div className="field">
-        <label className="label">First Name</label>
-        <div className="control">
-          <input
-            className="input"
-            type="text"
-            placeholder="First Name"
-            id="first"
-            value={name.first}
-            onChange={handleName}
-          />
-        </div>
-      </div>
-      <div className="field">
-        <label className="label">Last Name</label>
-        <div className="control">
-          <input
-            className="input"
-            type="text"
-            placeholder="Last Name"
-            id="last"
-            value={name.last}
-            onChange={handleName}
-          />
-        </div>
-      </div>
+
       <div className="field">
         <label className="label">GitHub</label>
         <div className="control">
