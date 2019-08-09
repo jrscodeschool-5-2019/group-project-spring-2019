@@ -93,7 +93,7 @@ Instructions assume user has Postman installed. In order to install and read doc
 
 4. Below the `POST` url, choose the `Body` radio button, then choose the `raw` radio button, then choose `JSON(application/json)` from dropdown to the right.
 
-In your code editor of choice, open the file `dummydata.json` and individually copy/paste the 5 objects in the data array in the `Body` and `Send` the `POST` request.
+In your code editor of choice, open the file `dummydata.json` and individually copy/paste the 5 objects in the data array in the `Body` and run the `POST` request.
 
 5. To `DELETE` an individual user, create a `DELETE` request, and use the following url: http://localhost:8000/profile/`USER_ID_TO_BE_DELETED_HERE`/edit
 
